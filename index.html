@@ -1,3215 +1,4395 @@
 <!DOCTYPE html>
-<!-- saved from url=(0076)file:///C:/Users/Badha/Downloads/Abdulrahman%20_%20Network%20Specialist.html -->
-<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Abdulrahman Alsahli | Network Specialist</title>
+    <meta name="description" content="Abdulrahman Alsahli - Network Specialist specializing in network infrastructure, routing, switching, Windows Server and network troubleshooting.">
+
+    <style>
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+            --bg: #17191a;
+            --bg-soft: #1c1f20;
+            --surface: #222627;
+            --surface-2: #282d2e;
+
+            --text: #eee9df;
+            --text-soft: #d1ccc1;
+            --muted: #9e9b93;
+
+            --primary: #c8a96b;
+            --primary-light: #e1c88f;
+
+            --secondary: #87998b;
+            --copper: #a77c5a;
+
+            --line: rgba(238, 233, 223, 0.10);
+            --line-strong: rgba(200, 169, 107, 0.28);
+
+            --shadow: 0 25px 80px rgba(0, 0, 0, 0.28);
+            --glow: rgba(200, 169, 107, 0.20);
+
+            --radius: 24px;
+            --nav-height: 82px;
+        }
+
+        body.light {
+            --bg: #e4dfd5;
+            --bg-soft: #ddd7cc;
+            --surface: #eeeae1;
+            --surface-2: #f3efe7;
+
+            --text: #252522;
+            --text-soft: #45433d;
+            --muted: #77736a;
+
+            --line: rgba(37, 37, 34, 0.10);
+            --line-strong: rgba(150, 116, 52, 0.30);
+
+            --shadow: 0 25px 70px rgba(62, 55, 43, 0.14);
+            --glow: rgba(180, 145, 76, 0.18);
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 20% 10%,
+                    rgba(200, 169, 107, 0.07),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 60%,
+                    rgba(135, 153, 139, 0.05),
+                    transparent 28%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            overflow-x: hidden;
+            transition:
+                background 0.4s ease,
+                color 0.4s ease;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                );
+
+            background-size: 70px 70px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 85%
+            );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            border: none;
+            background: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           CUSTOM CURSOR
+        ========================================================= */
+
+        .cursor-dot,
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            pointer-events: none;
+            z-index: 10000;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .cursor-ring {
+            width: 34px;
+            height: 34px;
+            border: 1px solid rgba(200,169,107,0.55);
+            border-radius: 50%;
+
+            transition:
+                width 0.2s ease,
+                height 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        body.cursor-hover .cursor-ring {
+            width: 55px;
+            height: 55px;
+            border-color: var(--primary);
+        }
+
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            height: var(--nav-height);
+
+            z-index: 999;
+
+            display: flex;
+            align-items: center;
+
+            border-bottom: 1px solid transparent;
+
+            transition:
+                background 0.35s ease,
+                border-color 0.35s ease,
+                backdrop-filter 0.35s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(23, 25, 26, 0.78);
+            backdrop-filter: blur(20px);
+            border-color: var(--line);
+        }
+
+        body.light .navbar.scrolled {
+            background: rgba(228, 223, 213, 0.80);
+        }
+
+        .nav-inner {
+            width: min(1180px, calc(100% - 40px));
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--line-strong);
+            border-radius: 12px;
+
+            color: var(--primary);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(200,169,107,0.15),
+                    rgba(135,153,139,0.04)
+                );
+
+            box-shadow:
+                0 0 30px rgba(200,169,107,0.08);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            position: relative;
+
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 1px;
+
+            background: var(--primary);
+
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--line);
+            border-radius: 12px;
+
+            color: var(--muted);
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--primary);
+            border-color: var(--line-strong);
+            background: rgba(200,169,107,0.05);
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+            padding-top: calc(var(--nav-height) + 40px);
+
+            display: flex;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 8px 13px;
+
+            border: 1px solid var(--line);
+            border-radius: 999px;
+
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            background: rgba(255,255,255,0.02);
+
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--secondary);
+
+            box-shadow:
+                0 0 0 5px rgba(135,153,139,0.08),
+                0 0 18px rgba(135,153,139,0.5);
+
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            margin-top: 25px;
+
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.98;
+
+            letter-spacing: -5px;
+            font-weight: 850;
+
+            animation: fadeUp 0.9s 0.1s ease both;
+        }
+
+        .hero h1 span {
+            display: block;
+
+            color: transparent;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    var(--primary-light),
+                    var(--primary),
+                    var(--copper)
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero-description {
+            max-width: 610px;
+
+            margin-top: 27px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+            line-height: 1.9;
+
+            animation: fadeUp 0.9s 0.2s ease both;
+        }
+
+        .hero-description strong {
+            color: var(--text-soft);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+
+            margin-top: 34px;
+
+            animation: fadeUp 0.9s 0.3s ease both;
+        }
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            min-height: 50px;
+            padding: 0 22px;
+
+            border-radius: 14px;
+
+            font-size: 14px;
+            font-weight: 750;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .btn-primary {
+            color: #191816;
 
-<title>Your Name | Network Specialist</title>
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary-light),
+                    var(--primary)
+                );
 
-<meta name="description" content="Personal portfolio of a Network Specialist focused on network design, infrastructure, routing, switching and network security.">
+            box-shadow:
+                0 15px 40px rgba(200,169,107,0.12);
+        }
 
-<style>
-
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-:root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --primary-light: #eff6ff;
-
-    --bg: #f8fafc;
-    --surface: #ffffff;
-    --surface-2: #f1f5f9;
-
-    --text: #0f172a;
-    --text-light: #64748b;
-    --border: #e2e8f0;
-
-    --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
-
-    --radius: 20px;
-}
-
-body.dark {
-    --bg: #08111f;
-    --surface: #0f1b2d;
-    --surface-2: #132238;
-
-    --text: #f8fafc;
-    --text-light: #94a3b8;
-    --border: #203149;
+        .btn-primary::before {
+            content: "";
 
-    --primary-light: #10264a;
-
-    --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-}
+            position: absolute;
+            inset: 0;
 
-body {
-    font-family:
-        Inter,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    background: var(--bg);
-    color: var(--text);
-
-    line-height: 1.7;
-
-    transition:
-        background .3s,
-        color .3s;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
+            background: linear-gradient(
+                100deg,
+                transparent,
+                rgba(255,255,255,0.35),
+                transparent
+            );
 
-button {
-    font-family: inherit;
-}
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-.container {
-    width: min(1180px, 92%);
-    margin: auto;
-}
+            transform: translateX(-120%);
+            transition: transform 0.6s ease;
+        }
 
-section {
-    padding: 110px 0;
-}
-
-.section-label {
-    color: var(--primary);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.section-title {
-    font-size: clamp(32px, 5vw, 46px);
-    line-height: 1.15;
-    margin-bottom: 15px;
-}
-
-.section-description {
-    max-width: 650px;
-    color: var(--text-light);
-    font-size: 17px;
-}
-
-.center {
-    text-align: center;
-}
-
-.center .section-description {
-    margin: auto;
-}
+        .btn-primary:hover::before {
+            transform: translateX(120%);
+        }
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+        .btn-secondary {
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.02);
+            color: var(--text-soft);
+        }
 
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
+        .btn-secondary:hover {
+            border-color: var(--line-strong);
+            background: rgba(200,169,107,0.05);
+        }
 
-    background: rgba(255,255,255,.82);
-    backdrop-filter: blur(18px);
+        .btn:hover {
+            transform: translateY(-3px);
+        }
 
-    border-bottom: 1px solid var(--border);
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
 
-    transition: .3s;
-}
+            margin-top: 42px;
 
-body.dark .navbar {
-    background: rgba(8,17,31,.82);
-}
+            animation: fadeUp 0.9s 0.4s ease both;
+        }
 
-.nav-inner {
-    height: 76px;
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 650;
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+        .meta-item span:first-child {
+            color: var(--primary);
+        }
 
-    font-size: 20px;
-    font-weight: 900;
-}
 
-.logo-mark {
-    width: 38px;
-    height: 38px;
+        /* =========================================================
+           HERO VISUAL
+        ========================================================= */
 
-    border-radius: 11px;
+        .hero-visual {
+            min-height: 590px;
 
-    display: grid;
-    place-items: center;
+            display: grid;
+            place-items: center;
 
-    color: white;
+            position: relative;
+        }
 
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #60a5fa
-        );
+        .visual-shell {
+            position: relative;
 
-    box-shadow:
-        0 10px 25px rgba(37,99,235,.25);
-}
+            width: min(500px, 90vw);
+            aspect-ratio: 1;
 
-.logo span {
-    color: var(--primary);
-}
+            display: grid;
+            place-items: center;
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
+            perspective: 1000px;
 
-    list-style: none;
-}
+            animation: visualAppear 1.1s 0.2s ease both;
+        }
 
-.nav-links a {
-    color: var(--text-light);
+        .visual-shell::before {
+            content: "";
 
-    font-size: 14px;
-    font-weight: 700;
+            position: absolute;
 
-    transition: .25s;
-}
+            width: 62%;
+            height: 62%;
 
-.nav-links a:hover {
-    color: var(--primary);
-}
+            border-radius: 50%;
 
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(200,169,107,0.17),
+                    transparent 65%
+                );
 
-.icon-btn {
-    width: 42px;
-    height: 42px;
+            filter: blur(25px);
 
-    border-radius: 12px;
+            animation: breathe 4s ease-in-out infinite;
+        }
 
-    border: 1px solid var(--border);
+        .orbit {
+            position: absolute;
 
-    background: var(--surface);
+            border: 1px solid var(--line-strong);
 
-    color: var(--text);
+            border-radius: 50%;
 
-    cursor: pointer;
+            transform: rotateX(65deg) rotateZ(20deg);
+        }
 
-    transition: .25s;
-}
+        .orbit-1 {
+            width: 91%;
+            height: 38%;
 
-.icon-btn:hover {
-    transform: translateY(-2px);
-    border-color: var(--primary);
-    color: var(--primary);
-}
+            animation:
+                orbitRotate 12s linear infinite;
+        }
 
-.menu-btn {
-    display: none;
-}
+        .orbit-2 {
+            width: 77%;
+            height: 55%;
 
-/* =========================================================
-   HERO
-========================================================= */
+            transform:
+                rotateX(70deg)
+                rotateZ(-35deg);
 
-.hero {
-    min-height: 100vh;
+            border-color: rgba(135,153,139,0.28);
 
-    padding-top: 150px;
-    padding-bottom: 100px;
+            animation:
+                orbitRotateReverse 15s linear infinite;
+        }
 
-    position: relative;
-    overflow: hidden;
+        .orbit-3 {
+            width: 62%;
+            height: 88%;
 
-    display: flex;
-    align-items: center;
-}
+            transform:
+                rotateX(68deg)
+                rotateZ(70deg);
 
-/* Grid background */
+            border-color: rgba(167,124,90,0.25);
 
-.hero::before {
-    content: "";
+            animation:
+                orbitRotate 18s linear infinite reverse;
+        }
 
-    position: absolute;
-    inset: 0;
+        .profile-frame {
+            position: relative;
+            z-index: 5;
 
-    background-image:
-        linear-gradient(
-            rgba(37,99,235,.055) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(37,99,235,.055) 1px,
-            transparent 1px
-        );
+            width: 55%;
+            aspect-ratio: 1;
 
-    background-size: 45px 45px;
+            padding: 9px;
 
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent
-        );
+            border-radius: 50%;
 
-    pointer-events: none;
-}
+            background:
+                conic-gradient(
+                    from 0deg,
+                    var(--primary),
+                    transparent 25%,
+                    var(--secondary),
+                    transparent 55%,
+                    var(--copper),
+                    transparent 78%,
+                    var(--primary)
+                );
 
-.hero::after {
-    content: "";
+            animation:
+                frameRotate 14s linear infinite;
 
-    position: absolute;
+            box-shadow:
+                0 0 70px rgba(200,169,107,0.12);
+        }
 
-    width: 550px;
-    height: 550px;
+        .profile-frame::before {
+            content: "";
 
-    right: -250px;
-    top: -150px;
+            position: absolute;
+            inset: 7px;
 
-    background: #dbeafe;
+            border-radius: 50%;
 
-    border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
 
-    filter: blur(10px);
+        .profile-image {
+            position: relative;
 
-    opacity: .55;
+            width: 100%;
+            height: 100%;
 
-    z-index: -1;
-}
+            overflow: hidden;
 
-body.dark .hero::after {
-    background: #102c57;
-}
+            border-radius: 50%;
 
-.hero-grid {
-    position: relative;
-    z-index: 2;
+            background:
+                radial-gradient(
+                    circle at 50% 25%,
+                    #4a4c4a,
+                    #252827 70%
+                );
 
-    display: grid;
+            border: 5px solid var(--bg);
+        }
 
-    grid-template-columns:
-        1.15fr
-        .85fr;
+        .profile-image img {
+            width: 100%;
+            height: 100%;
 
-    gap: 70px;
+            object-fit: cover;
 
-    align-items: center;
-}
+            transition: transform 0.7s ease;
+        }
 
-.eyebrow {
-    display: inline-flex;
+        .profile-frame:hover .profile-image img {
+            transform: scale(1.06);
+        }
 
-    align-items: center;
-    gap: 8px;
+        .profile-placeholder {
+            width: 100%;
+            height: 100%;
 
-    padding: 8px 13px;
+            display: grid;
+            place-items: center;
 
-    border-radius: 100px;
+            text-align: center;
 
-    background: var(--primary-light);
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
 
-    color: var(--primary);
+            letter-spacing: 1px;
+        }
 
-    font-size: 12px;
-    font-weight: 800;
+        .profile-placeholder strong {
+            color: var(--primary);
+            font-size: 15px;
+        }
 
-    margin-bottom: 22px;
-}
+        .orbit-ball {
+            position: absolute;
 
-.status-dot {
-    width: 7px;
-    height: 7px;
+            width: 13px;
+            height: 13px;
 
-    background: #22c55e;
+            border-radius: 50%;
 
-    border-radius: 50%;
+            z-index: 8;
 
-    box-shadow:
-        0 0 0 5px rgba(34,197,94,.12);
-}
+            box-shadow:
+                0 0 0 5px rgba(200,169,107,0.06),
+                0 0 25px rgba(200,169,107,0.45);
+        }
 
-.hero h1 {
-    font-size: clamp(48px, 7vw, 78px);
+        .ball-1 {
+            background: var(--primary);
+            animation: ball1 7s linear infinite;
+        }
 
-    line-height: 1.02;
+        .ball-2 {
+            background: var(--secondary);
+            animation: ball2 9s linear infinite;
+        }
 
-    letter-spacing: -3px;
+        .ball-3 {
+            background: var(--copper);
+            animation: ball3 11s linear infinite;
+        }
 
-    margin-bottom: 25px;
-}
+        .ball-4 {
+            background: var(--primary-light);
+            animation: ball4 13s linear infinite;
+        }
 
-.hero h1 span {
-    color: var(--primary);
-}
+        .tech-badge {
+            position: absolute;
 
-.hero-text {
-    color: var(--text-light);
+            z-index: 10;
 
-    max-width: 650px;
+            padding: 9px 13px;
 
-    font-size: 18px;
+            border: 1px solid var(--line-strong);
+            border-radius: 12px;
 
-    margin-bottom: 35px;
-}
+            background:
+                rgba(23,25,26,0.72);
 
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
+            backdrop-filter: blur(12px);
 
-    gap: 13px;
-}
+            color: var(--text-soft);
 
-.btn {
-    display: inline-flex;
+            font-size: 10px;
+            font-weight: 800;
 
-    align-items: center;
-    justify-content: center;
+            letter-spacing: 0.7px;
 
-    gap: 9px;
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.18);
+        }
 
-    padding: 13px 21px;
+        body.light .tech-badge {
+            background: rgba(238,234,225,0.76);
+        }
 
-    border-radius: 12px;
+        .b1 {
+            top: 19%;
+            left: 3%;
+            animation: floatA 4.5s ease-in-out infinite;
+        }
 
-    border: 1px solid transparent;
+        .b2 {
+            top: 8%;
+            right: 10%;
+            animation: floatB 5s 0.5s ease-in-out infinite;
+        }
 
-    font-size: 14px;
-    font-weight: 800;
+        .b3 {
+            right: 0;
+            bottom: 24%;
+            animation: floatA 4.8s 0.7s ease-in-out infinite;
+        }
 
-    cursor: pointer;
+        .b4 {
+            left: 6%;
+            bottom: 17%;
+            animation: floatB 5.2s 0.2s ease-in-out infinite;
+        }
 
-    transition: .25s;
-}
+        .signal {
+            position: absolute;
 
-.btn-primary {
-    color: white;
+            height: 1px;
 
-    background: var(--primary);
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--primary),
+                    transparent
+                );
 
-    box-shadow:
-        0 12px 28px rgba(37,99,235,.22);
-}
+            opacity: 0.4;
+        }
 
-.btn-primary:hover {
-    background: var(--primary-dark);
+        .signal.s1 {
+            width: 170px;
+            top: 30%;
+            right: -5%;
 
-    transform: translateY(-3px);
-}
+            animation: signalMove 3s ease-in-out infinite;
+        }
 
-.btn-outline {
-    color: var(--text);
+        .signal.s2 {
+            width: 130px;
+            bottom: 32%;
+            left: -5%;
 
-    background: var(--surface);
+            animation: signalMove 3.5s 1s ease-in-out infinite reverse;
+        }
 
-    border-color: var(--border);
-}
 
-.btn-outline:hover {
-    color: var(--primary);
-    border-color: var(--primary);
+        /* =========================================================
+           SECTION HEADERS
+        ========================================================= */
 
-    transform: translateY(-3px);
-}
+        .section {
+            padding: 120px 0;
+        }
 
-/* =========================================================
-   NETWORK VISUAL
-========================================================= */
+        .section-header {
+            max-width: 720px;
+            margin-bottom: 50px;
+        }
 
-.network-visual {
-    position: relative;
+        .section-kicker {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 850;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
 
-    min-height: 460px;
+        .section-title {
+            font-size: clamp(34px, 5vw, 56px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+        }
 
-    display: grid;
-    place-items: center;
-}
+        .section-description {
+            margin-top: 17px;
 
-.network-card {
-    width: 390px;
-    max-width: 100%;
+            color: var(--muted);
 
-    padding: 30px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
 
-    border: 1px solid var(--border);
 
-    border-radius: 28px;
+        /* =========================================================
+           ABOUT
+        ========================================================= */
 
-    background:
-        linear-gradient(
-            145deg,
-            var(--surface),
-            var(--surface-2)
-        );
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 25px;
+        }
 
-    box-shadow: var(--shadow);
+        .about-card {
+            position: relative;
 
-    position: relative;
+            padding: 34px;
 
-    animation: floating 5s ease-in-out infinite;
-}
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
 
-@keyframes floating {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.008)
+                );
 
-    0%,100% {
-        transform: translateY(0);
-    }
+            box-shadow: var(--shadow);
 
-    50% {
-        transform: translateY(-12px);
-    }
-}
+            overflow: hidden;
+        }
 
-.network-header {
-    display: flex;
+        .about-card::before {
+            content: "";
 
-    align-items: center;
-    justify-content: space-between;
+            position: absolute;
 
-    padding-bottom: 20px;
+            width: 180px;
+            height: 180px;
 
-    border-bottom: 1px solid var(--border);
+            right: -80px;
+            top: -80px;
 
-    margin-bottom: 30px;
-}
+            border-radius: 50%;
 
-.network-header strong {
-    font-size: 14px;
-}
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(200,169,107,0.13),
+                    transparent 70%
+                );
+        }
 
-.online {
-    color: #16a34a;
+        .about-card h3 {
+            font-size: 21px;
+            margin-bottom: 16px;
+        }
 
-    font-size: 12px;
-    font-weight: 800;
-}
+        .about-card p {
+            color: var(--muted);
+            line-height: 1.9;
+            font-size: 14px;
+        }
 
-.network-diagram {
-    height: 260px;
+        .about-list {
+            display: grid;
+            gap: 14px;
+        }
 
-    position: relative;
-}
+        .about-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
 
-/* Nodes */
+            padding: 16px;
 
-.node {
-    position: absolute;
+            border: 1px solid var(--line);
+            border-radius: 15px;
 
-    width: 75px;
-    height: 75px;
+            background: rgba(255,255,255,0.015);
+        }
 
-    border-radius: 18px;
+        .about-list-icon {
+            width: 32px;
+            height: 32px;
 
-    background: var(--surface);
+            flex: 0 0 32px;
 
-    border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
 
-    box-shadow: 0 12px 30px rgba(15,23,42,.08);
+            border-radius: 10px;
 
-    display: grid;
-    place-items: center;
+            color: var(--primary);
 
-    font-size: 25px;
+            background: rgba(200,169,107,0.08);
+        }
 
-    z-index: 3;
-}
+        .about-list-item strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
 
-.node small {
-    position: absolute;
+        .about-list-item span {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
 
-    bottom: -23px;
 
-    font-size: 10px;
-    font-weight: 800;
+        /* =========================================================
+           EXPERTISE
+        ========================================================= */
 
-    color: var(--text-light);
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
 
-    white-space: nowrap;
-}
+        .expertise-card {
+            position: relative;
 
-.node.core {
-    left: 50%;
-    top: 50%;
+            min-height: 270px;
+            padding: 28px;
 
-    transform: translate(-50%,-50%);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
 
-    width: 95px;
-    height: 95px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    transparent
+                );
 
-    background: var(--primary);
+            overflow: hidden;
 
-    color: white;
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                background 0.35s ease;
+        }
 
-    border-color: var(--primary);
-}
+        .expertise-card:hover {
+            transform: translateY(-9px);
+            border-color: var(--line-strong);
 
-.node.router {
-    top: 10px;
-    left: 50%;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(200,169,107,0.07),
+                    rgba(255,255,255,0.015)
+                );
+        }
 
-    transform: translateX(-50%);
-}
+        .expertise-number {
+            position: absolute;
 
-.node.server {
-    bottom: 10px;
-    left: 8%;
-}
+            right: 22px;
+            top: 17px;
 
-.node.security {
-    bottom: 10px;
-    right: 8%;
-}
+            color: rgba(255,255,255,0.05);
 
-/* Connections */
+            font-size: 60px;
+            font-weight: 900;
+        }
 
-.line {
-    position: absolute;
+        .expertise-icon {
+            width: 50px;
+            height: 50px;
 
-    height: 2px;
+            display: grid;
+            place-items: center;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--primary),
-            transparent
-        );
+            border: 1px solid var(--line-strong);
+            border-radius: 15px;
 
-    transform-origin: left center;
+            color: var(--primary);
 
-    opacity: .65;
+            background: rgba(200,169,107,0.07);
 
-    z-index: 1;
-}
+            font-size: 20px;
 
-.line.one {
-    width: 125px;
+            margin-bottom: 23px;
+        }
 
-    left: 50%;
-    top: 42%;
+        .expertise-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
 
-    transform:
-        rotate(90deg)
-        translateY(-48px);
-}
+        .expertise-card p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
 
-.line.two {
-    width: 130px;
 
-    left: 44%;
-    top: 61%;
+        /* =========================================================
+           SKILLS
+        ========================================================= */
 
-    transform: rotate(150deg);
-}
+        .skills-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
 
-.line.three {
-    width: 130px;
+        .skills-panel {
+            padding: 30px;
 
-    left: 56%;
-    top: 61%;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
 
-    transform: rotate(30deg);
-}
+            background: rgba(255,255,255,0.018);
+        }
 
-.network-footer {
-    display: grid;
+        .skill {
+            margin-bottom: 23px;
+        }
 
-    grid-template-columns: repeat(3,1fr);
+        .skill:last-child {
+            margin-bottom: 0;
+        }
 
-    gap: 10px;
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
 
-    margin-top: 15px;
-}
+            margin-bottom: 9px;
 
-.network-stat {
-    padding: 12px;
+            font-size: 12px;
+            font-weight: 700;
+        }
 
-    background: var(--surface);
+        .skill-top span:last-child {
+            color: var(--primary);
+        }
 
-    border: 1px solid var(--border);
+        .skill-bar {
+            height: 6px;
 
-    border-radius: 12px;
+            overflow: hidden;
 
-    text-align: center;
-}
+            border-radius: 99px;
 
-.network-stat strong {
-    display: block;
+            background: rgba(255,255,255,0.06);
+        }
 
-    color: var(--primary);
+        .skill-fill {
+            width: 0;
+            height: 100%;
 
-    font-size: 18px;
-}
+            border-radius: inherit;
 
-.network-stat span {
-    font-size: 10px;
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--primary),
+                    var(--primary-light)
+                );
 
-    color: var(--text-light);
-}
+            transition: width 1.3s cubic-bezier(.2,.8,.2,1);
+        }
 
-/* =========================================================
-   TRUST BAR
-========================================================= */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
 
-.trust {
-    padding: 28px 0;
+        .tag {
+            padding: 10px 13px;
 
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+            border: 1px solid var(--line);
+            border-radius: 11px;
 
-    background: var(--surface);
-}
+            color: var(--text-soft);
 
-.trust-inner {
-    display: flex;
+            font-size: 11px;
+            font-weight: 700;
 
-    justify-content: space-between;
-    align-items: center;
+            background: rgba(255,255,255,0.018);
 
-    gap: 20px;
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease;
+        }
 
-    flex-wrap: wrap;
-}
+        .tag:hover {
+            transform: translateY(-3px);
+            color: var(--primary-light);
+            border-color: var(--line-strong);
+        }
 
-.trust-item {
-    color: var(--text-light);
 
-    font-size: 12px;
-    font-weight: 800;
+        /* =========================================================
+           PROJECTS
+        ========================================================= */
 
-    letter-spacing: 1px;
-}
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
 
-/* =========================================================
-   ABOUT
-========================================================= */
+        .project-card {
+            position: relative;
 
-.about-grid {
-    display: grid;
+            overflow: hidden;
 
-    grid-template-columns:
-        1fr
-        1fr;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
 
-    gap: 70px;
+            background: var(--surface);
 
-    align-items: center;
+            transition:
+                transform 0.4s ease,
+                border-color 0.4s ease;
+        }
 
-    margin-top: 60px;
-}
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--line-strong);
+        }
 
-.about-content p {
-    color: var(--text-light);
+        .project-image {
+            position: relative;
 
-    margin-bottom: 18px;
-}
+            height: 260px;
 
-.check-list {
-    list-style: none;
+            overflow: hidden;
 
-    margin-top: 25px;
-}
+            background:
+                linear-gradient(
+                    135deg,
+                    #252a29,
+                    #151817
+                );
+        }
 
-.check-list li {
-    margin-bottom: 13px;
+        .project-image img {
+            width: 100%;
+            height: 100%;
 
-    color: var(--text);
+            object-fit: cover;
 
-    font-weight: 600;
-}
+            opacity: 0.75;
 
-.check-list li::before {
-    content: "✓";
+            transition:
+                transform 0.7s ease,
+                opacity 0.7s ease;
+        }
 
-    color: var(--primary);
+        .project-card:hover .project-image img {
+            transform: scale(1.06);
+            opacity: 0.9;
+        }
 
-    margin-right: 10px;
+        .project-overlay {
+            position: absolute;
+            inset: 0;
 
-    font-weight: 900;
-}
+            display: flex;
+            align-items: flex-end;
 
-.about-panel {
-    display: grid;
+            padding: 22px;
 
-    grid-template-columns:
-        1fr
-        1fr;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(10,11,11,0.8),
+                    transparent 65%
+                );
+        }
 
-    gap: 15px;
-}
+        .project-placeholder {
+            position: absolute;
+            inset: 0;
 
-.about-box {
-    background: var(--surface);
+            display: grid;
+            place-items: center;
 
-    border: 1px solid var(--border);
+            text-align: center;
 
-    border-radius: 18px;
+            color: var(--muted);
 
-    padding: 25px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
 
-    box-shadow: 0 10px 30px rgba(15,23,42,.04);
-}
+        .project-placeholder strong {
+            display: block;
 
-.about-box:nth-child(2) {
-    transform: translateY(25px);
-}
+            color: var(--primary);
 
-.about-box:nth-child(3) {
-    transform: translateY(-10px);
-}
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
 
-.about-box:nth-child(4) {
-    transform: translateY(15px);
-}
+        .project-body {
+            padding: 24px;
+        }
 
-.about-icon {
-    font-size: 27px;
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
 
-    margin-bottom: 12px;
-}
+            margin-bottom: 13px;
+        }
 
-.about-box h3 {
-    font-size: 18px;
+        .project-tag {
+            padding: 6px 9px;
 
-    margin-bottom: 5px;
-}
+            border-radius: 8px;
 
-.about-box p {
-    color: var(--text-light);
+            color: var(--primary-light);
 
-    font-size: 13px;
-}
+            background: rgba(200,169,107,0.07);
 
-/* =========================================================
-   SKILLS
-========================================================= */
+            font-size: 9px;
+            font-weight: 800;
+        }
 
-.skills-section {
-    background: var(--surface-2);
-}
+        .project-body h3 {
+            font-size: 20px;
+            margin-bottom: 9px;
+        }
 
-.skills-grid {
-    display: grid;
+        .project-body p {
+            color: var(--muted);
 
-    grid-template-columns:
-        repeat(3,1fr);
+            font-size: 13px;
+            line-height: 1.8;
+        }
 
-    gap: 20px;
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
 
-    margin-top: 55px;
-}
+            margin-top: 18px;
 
-.skill {
-    background: var(--surface);
+            color: var(--primary);
 
-    border: 1px solid var(--border);
+            font-size: 12px;
+            font-weight: 800;
+        }
 
-    border-radius: 18px;
 
-    padding: 25px;
+        /* =========================================================
+           DEVELOPMENT
+        ========================================================= */
 
-    transition: .3s;
-}
+        .development {
+            padding-top: 50px;
+        }
 
-.skill:hover {
-    transform: translateY(-7px);
+        .dev-box {
+            position: relative;
 
-    border-color:
-        rgba(37,99,235,.4);
+            min-height: 390px;
 
-    box-shadow: var(--shadow);
-}
+            display: grid;
+            place-items: center;
 
-.skill-top {
-    display: flex;
+            overflow: hidden;
 
-    justify-content: space-between;
+            border: 1px solid var(--line);
+            border-radius: 32px;
 
-    align-items: center;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(200,169,107,0.07),
+                    transparent 38%
+                ),
+                var(--surface);
 
-    margin-bottom: 15px;
-}
+            box-shadow: var(--shadow);
+        }
 
-.skill-icon {
-    width: 45px;
-    height: 45px;
+        .dev-orbit {
+            position: absolute;
 
-    display: grid;
-    place-items: center;
+            width: 330px;
+            height: 160px;
 
-    border-radius: 13px;
+            border: 1px solid var(--line-strong);
 
-    background: var(--primary-light);
+            border-radius: 50%;
 
-    font-size: 22px;
-}
+            transform: rotateX(65deg);
 
-.skill-percent {
-    color: var(--primary);
+            animation: devOrbit 10s linear infinite;
+        }
 
-    font-weight: 800;
+        .dev-orbit:nth-child(2) {
+            width: 250px;
+            height: 260px;
 
-    font-size: 13px;
-}
+            transform:
+                rotateX(65deg)
+                rotateZ(65deg);
 
-.skill h3 {
-    margin-bottom: 8px;
+            animation-duration: 13s;
+        }
 
-    font-size: 18px;
-}
+        .dev-orbit:nth-child(3) {
+            width: 180px;
+            height: 330px;
 
-.skill p {
-    color: var(--text-light);
+            transform:
+                rotateX(65deg)
+                rotateZ(-50deg);
 
-    font-size: 13px;
+            animation-duration: 16s;
+        }
 
-    margin-bottom: 17px;
-}
+        .dev-core {
+            position: relative;
+            z-index: 5;
 
-.progress {
-    height: 6px;
+            width: 130px;
+            height: 130px;
 
-    background: var(--surface-2);
+            display: grid;
+            place-items: center;
 
-    border-radius: 20px;
+            border-radius: 50%;
 
-    overflow: hidden;
-}
+            border: 1px solid var(--line-strong);
 
-.progress span {
-    display: block;
+            color: var(--primary-light);
 
-    height: 100%;
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(200,169,107,0.17),
+                    rgba(34,38,39,0.95)
+                );
 
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #60a5fa
-        );
+            box-shadow:
+                0 0 60px rgba(200,169,107,0.12);
 
-    border-radius: inherit;
-}
+            text-align: center;
+        }
 
-/* =========================================================
-   PROJECTS
-========================================================= */
+        .dev-core strong {
+            font-size: 15px;
+        }
 
-.projects-grid {
-    display: grid;
+        .dev-core span {
+            display: block;
 
-    grid-template-columns:
-        repeat(3,1fr);
+            margin-top: 5px;
 
-    gap: 22px;
+            color: var(--muted);
+            font-size: 9px;
+        }
 
-    margin-top: 55px;
-}
+        .dev-chip {
+            position: absolute;
 
-.project {
-    background: var(--surface);
+            padding: 10px 13px;
 
-    border: 1px solid var(--border);
+            border: 1px solid var(--line);
+            border-radius: 11px;
 
-    border-radius: 20px;
+            background: rgba(23,25,26,0.7);
 
-    overflow: hidden;
+            color: var(--text-soft);
 
-    transition: .3s;
-}
+            font-size: 10px;
+            font-weight: 800;
+        }
 
-.project:hover {
-    transform: translateY(-8px);
+        .dev-chip.c1 {
+            top: 22%;
+            left: 17%;
+        }
 
-    box-shadow: var(--shadow);
-}
+        .dev-chip.c2 {
+            top: 20%;
+            right: 18%;
+        }
 
-.project-image {
-    height: 190px;
+        .dev-chip.c3 {
+            bottom: 20%;
+            left: 20%;
+        }
 
-    position: relative;
+        .dev-chip.c4 {
+            bottom: 19%;
+            right: 20%;
+        }
 
-    display: grid;
-    place-items: center;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #dbeafe,
-            #eff6ff 45%,
-            #f8fafc
-        );
+        /* =========================================================
+           CONTACT
+        ========================================================= */
 
-    overflow: hidden;
-}
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 25px;
+        }
 
-body.dark .project-image {
-    background:
-        radial-gradient(
-            circle at center,
-            #12305d,
-            #102039
-        );
-}
+        .contact-info,
+        .contact-form {
+            padding: 32px;
 
-.project-image::before {
-    content: "";
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
 
-    position: absolute;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.03),
+                    rgba(255,255,255,0.008)
+                );
+        }
 
-    inset: 20px;
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 13px;
+        }
 
-    background-image:
-        linear-gradient(
-            rgba(37,99,235,.12) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(37,99,235,.12) 1px,
-            transparent 1px
-        );
+        .contact-info > p {
+            color: var(--muted);
 
-    background-size: 25px 25px;
-}
+            font-size: 13px;
+            line-height: 1.8;
 
-.project-symbol {
-    position: relative;
+            margin-bottom: 28px;
+        }
 
-    z-index: 2;
+        .contact-item {
+            display: flex;
+            gap: 13px;
 
-    font-size: 65px;
-}
+            padding: 15px 0;
 
-.project-content {
-    padding: 25px;
-}
+            border-bottom: 1px solid var(--line);
+        }
 
-.project-content h3 {
-    margin-bottom: 8px;
+        .contact-item:last-child {
+            border-bottom: none;
+        }
 
-    font-size: 20px;
-}
+        .contact-icon {
+            width: 38px;
+            height: 38px;
 
-.project-content p {
-    color: var(--text-light);
+            flex: 0 0 38px;
 
-    font-size: 14px;
+            display: grid;
+            place-items: center;
 
-    margin-bottom: 18px;
-}
+            border-radius: 11px;
 
-.tags {
-    display: flex;
+            background: rgba(200,169,107,0.08);
 
-    flex-wrap: wrap;
+            color: var(--primary);
+        }
 
-    gap: 7px;
-}
+        .contact-item small {
+            display: block;
 
-.tag {
-    padding: 5px 9px;
+            color: var(--muted);
 
-    border-radius: 7px;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
 
-    background: var(--primary-light);
+        .contact-item strong {
+            font-size: 12px;
+            word-break: break-word;
+        }
 
-    color: var(--primary);
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px;
+        }
 
-    font-size: 10px;
+        .field {
+            margin-bottom: 14px;
+        }
 
-    font-weight: 800;
-}
+        .field label {
+            display: block;
 
-/* =========================================================
-   EXPERIENCE
-========================================================= */
+            margin-bottom: 7px;
 
-.experience {
-    background: var(--surface-2);
-}
+            color: var(--text-soft);
 
-.timeline {
-    max-width: 850px;
+            font-size: 11px;
+            font-weight: 700;
+        }
 
-    margin: 60px auto 0;
+        .field input,
+        .field textarea {
+            width: 100%;
 
-    position: relative;
-}
+            border: 1px solid var(--line);
+            border-radius: 13px;
 
-.timeline::before {
-    content: "";
+            padding: 13px 14px;
 
-    position: absolute;
+            outline: none;
 
-    left: 50%;
+            background: rgba(255,255,255,0.018);
 
-    top: 0;
-    bottom: 0;
+            color: var(--text);
 
-    width: 2px;
+            transition:
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
 
-    background: var(--border);
+        .field textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
 
-    transform: translateX(-50%);
-}
+        .field input:focus,
+        .field textarea:focus {
+            border-color: var(--line-strong);
 
-.timeline-item {
-    width: 50%;
+            box-shadow:
+                0 0 0 4px rgba(200,169,107,0.05);
+        }
 
-    padding: 0 35px 45px;
 
-    position: relative;
-}
+        /* =========================================================
+           FOOTER
+        ========================================================= */
 
-.timeline-item:nth-child(even) {
-    margin-left: 50%;
-}
+        footer {
+            position: relative;
+            z-index: 2;
 
-.timeline-dot {
-    position: absolute;
+            padding: 30px 0 40px;
 
-    top: 0;
+            border-top: 1px solid var(--line);
+        }
 
-    width: 13px;
-    height: 13px;
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
 
-    background: var(--primary);
+        .footer-inner p {
+            color: var(--muted);
+            font-size: 11px;
+        }
 
-    border-radius: 50%;
+        .footer-mark {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 850;
+        }
 
-    box-shadow:
-        0 0 0 6px var(--primary-light);
-}
 
-.timeline-item:nth-child(odd)
-.timeline-dot {
-    right: -7px;
-}
+        /* =========================================================
+           LIGHTBOX
+        ========================================================= */
 
-.timeline-item:nth-child(even)
-.timeline-dot {
-    left: -7px;
-}
+        .lightbox {
+            position: fixed;
+            inset: 0;
 
-.timeline-card {
-    background: var(--surface);
+            z-index: 10001;
 
-    border: 1px solid var(--border);
+            display: none;
+            place-items: center;
 
-    padding: 24px;
+            padding: 30px;
 
-    border-radius: 18px;
+            background: rgba(10,11,11,0.88);
 
-    box-shadow:
-        0 10px 30px rgba(15,23,42,.04);
-}
+            backdrop-filter: blur(16px);
+        }
 
-.timeline-date {
-    color: var(--primary);
+        .lightbox.active {
+            display: grid;
+        }
 
-    font-size: 12px;
+        .lightbox img {
+            max-width: min(1000px, 92vw);
+            max-height: 82vh;
 
-    font-weight: 800;
+            border-radius: 18px;
 
-    margin-bottom: 8px;
-}
+            border: 1px solid var(--line-strong);
 
-.timeline-card h3 {
-    font-size: 18px;
+            box-shadow:
+                0 40px 100px rgba(0,0,0,0.5);
+        }
 
-    margin-bottom: 5px;
-}
+        .lightbox-close {
+            position: absolute;
 
-.timeline-card p {
-    color: var(--text-light);
+            top: 25px;
+            right: 25px;
 
-    font-size: 13px;
-}
+            width: 46px;
+            height: 46px;
 
-/* =========================================================
-   CERTIFICATIONS
-========================================================= */
+            display: grid;
+            place-items: center;
 
-.cert-grid {
-    display: grid;
+            border: 1px solid var(--line);
+            border-radius: 13px;
 
-    grid-template-columns:
-        repeat(3,1fr);
+            background: rgba(255,255,255,0.04);
 
-    gap: 20px;
+            font-size: 25px;
 
-    margin-top: 55px;
-}
+            color: var(--text);
+        }
 
-.cert {
-    background: var(--surface);
 
-    border: 1px solid var(--border);
+        /* =========================================================
+           AMBIENT GLOW
+        ========================================================= */
 
-    border-radius: 18px;
+        .mouse-glow {
+            position: fixed;
 
-    padding: 27px;
+            width: 420px;
+            height: 420px;
 
-    position: relative;
+            pointer-events: none;
+            z-index: 0;
 
-    overflow: hidden;
-}
+            border-radius: 50%;
 
-.cert::after {
-    content: "CERT";
+            background:
+                radial-gradient(
+                    circle,
+                    var(--glow),
+                    transparent 68%
+                );
 
-    position: absolute;
+            transform: translate(-50%, -50%);
 
-    right: -15px;
-    bottom: -20px;
+            filter: blur(10px);
 
-    font-size: 65px;
+            opacity: 0.65;
+        }
 
-    font-weight: 900;
+        .particles {
+            position: fixed;
+            inset: 0;
 
-    color: var(--primary);
+            pointer-events: none;
+            z-index: 1;
 
-    opacity: .04;
-}
+            overflow: hidden;
+        }
 
-.cert-logo {
-    width: 50px;
-    height: 50px;
+        .particle {
+            position: absolute;
 
-    display: grid;
-    place-items: center;
+            width: 2px;
+            height: 2px;
 
-    border-radius: 14px;
+            border-radius: 50%;
 
-    background: var(--primary-light);
+            background: var(--primary);
 
-    margin-bottom: 18px;
+            opacity: 0.25;
 
-    font-size: 23px;
-}
+            animation:
+                particleFloat linear infinite;
+        }
 
-.cert h3 {
-    margin-bottom: 7px;
-}
 
-.cert p {
-    color: var(--text-light);
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
 
-    font-size: 13px;
-}
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
 
-/* =========================================================
-   CONTACT
-========================================================= */
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
 
-.contact {
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary-light),
-            var(--bg)
-        );
-}
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.contact-box {
-    text-align: center;
 
-    max-width: 800px;
+        /* =========================================================
+           ANIMATIONS
+        ========================================================= */
 
-    margin: auto;
-}
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
 
-.contact-box .section-title {
-    margin-bottom: 18px;
-}
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.contact-box .section-description {
-    margin-bottom: 30px;
-}
+        @keyframes visualAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.85) rotateY(12deg);
+            }
 
-/* =========================================================
-   FOOTER
-========================================================= */
+            to {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+            }
+        }
 
-footer {
-    background: #08111f;
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
 
-    color: white;
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
 
-    padding: 45px 0;
-}
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(0.9);
+                opacity: 0.65;
+            }
 
-.footer-inner {
-    display: flex;
+            50% {
+                transform: scale(1.12);
+                opacity: 1;
+            }
+        }
 
-    justify-content: space-between;
+        @keyframes frameRotate {
+            from {
+                transform: rotate(0deg);
+            }
 
-    align-items: center;
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-    gap: 20px;
+        @keyframes orbitRotate {
+            from {
+                transform:
+                    rotateX(65deg)
+                    rotateZ(0deg);
+            }
 
-    flex-wrap: wrap;
-}
+            to {
+                transform:
+                    rotateX(65deg)
+                    rotateZ(360deg);
+            }
+        }
 
-.footer-brand {
-    font-weight: 800;
-}
+        @keyframes orbitRotateReverse {
+            from {
+                transform:
+                    rotateX(70deg)
+                    rotateZ(360deg);
+            }
 
-.footer-brand span {
-    color: #60a5fa;
-}
+            to {
+                transform:
+                    rotateX(70deg)
+                    rotateZ(0deg);
+            }
+        }
 
-.footer-copy {
-    color: #94a3b8;
+        @keyframes ball1 {
+            from {
+                transform:
+                    rotate(0deg)
+                    translateX(225px)
+                    rotate(0deg);
+            }
 
-    font-size: 12px;
-}
+            to {
+                transform:
+                    rotate(360deg)
+                    translateX(225px)
+                    rotate(-360deg);
+            }
+        }
 
-/* =========================================================
-   REVEAL ANIMATION
-========================================================= */
+        @keyframes ball2 {
+            from {
+                transform:
+                    rotate(360deg)
+                    translateX(185px)
+                    rotate(-360deg);
+            }
 
-.reveal {
-    opacity: 0;
+            to {
+                transform:
+                    rotate(0deg)
+                    translateX(185px)
+                    rotate(0deg);
+            }
+        }
 
-    transform: translateY(25px);
+        @keyframes ball3 {
+            from {
+                transform:
+                    rotate(0deg)
+                    translateX(150px)
+                    rotate(0deg);
+            }
 
-    transition:
-        opacity .7s ease,
-        transform .7s ease;
-}
+            to {
+                transform:
+                    rotate(360deg)
+                    translateX(150px)
+                    rotate(-360deg);
+            }
+        }
 
-.reveal.show {
-    opacity: 1;
+        @keyframes ball4 {
+            from {
+                transform:
+                    rotate(360deg)
+                    translateX(205px)
+                    rotate(-360deg);
+            }
 
-    transform: translateY(0);
-}
+            to {
+                transform:
+                    rotate(0deg)
+                    translateX(205px)
+                    rotate(0deg);
+            }
+        }
 
-/* =========================================================
-   LANGUAGE
-========================================================= */
+        @keyframes floatA {
+            0%, 100% {
+                transform: translateY(0);
+            }
 
-.ar {
-    display: none;
-}
+            50% {
+                transform: translateY(-12px);
+            }
+        }
 
-body.rtl .en {
-    display: none;
-}
+        @keyframes floatB {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
 
-body.rtl .ar {
-    display: inline;
-}
+            50% {
+                transform: translateY(10px) rotate(2deg);
+            }
+        }
 
-body.rtl {
-    direction: rtl;
-}
+        @keyframes signalMove {
+            0%, 100% {
+                opacity: 0.1;
+                transform: scaleX(0.7);
+            }
 
-body.rtl .nav-links {
-    direction: rtl;
-}
+            50% {
+                opacity: 0.65;
+                transform: scaleX(1.2);
+            }
+        }
 
-body.rtl .hero h1 {
-    letter-spacing: 0;
-}
+        @keyframes devOrbit {
+            from {
+                transform:
+                    rotateX(65deg)
+                    rotateZ(0deg);
+            }
 
-body.rtl .check-list li::before {
-    margin-right: 0;
-    margin-left: 10px;
-}
+            to {
+                transform:
+                    rotateX(65deg)
+                    rotateZ(360deg);
+            }
+        }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+        @keyframes particleFloat {
+            from {
+                transform:
+                    translateY(110vh)
+                    translateX(0);
+            }
 
-@media (max-width: 1000px) {
+            to {
+                transform:
+                    translateY(-10vh)
+                    translateX(60px);
+            }
+        }
 
-    .nav-links {
-        gap: 17px;
-    }
 
-    .hero-grid {
-        grid-template-columns: 1fr;
-    }
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
 
-    .hero {
-        text-align: center;
-    }
+        @media (max-width: 950px) {
 
-    .hero-text {
-        margin-left: auto;
-        margin-right: auto;
-    }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
 
-    .hero-buttons {
-        justify-content: center;
-    }
+            .hero-content {
+                text-align: center;
+            }
 
-    .network-visual {
-        max-width: 500px;
-        width: 100%;
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-        margin: auto;
-    }
+            .hero-buttons,
+            .hero-meta {
+                justify-content: center;
+            }
 
-    .skills-grid,
-    .projects-grid,
-    .cert-grid {
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-}
+            .hero-visual {
+                min-height: 500px;
+            }
 
-@media (max-width: 760px) {
+            .about-grid,
+            .skills-layout,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
 
-    .nav-links {
-        position: absolute;
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-        top: 76px;
-        left: 4%;
 
-        width: 92%;
+        @media (max-width: 760px) {
 
-        padding: 20px;
+            :root {
+                --nav-height: 72px;
+            }
 
-        flex-direction: column;
+            .container,
+            .nav-inner {
+                width: min(100% - 28px, 1180px);
+            }
 
-        align-items: stretch;
+            .nav-links {
+                position: fixed;
 
-        background: var(--surface);
+                top: var(--nav-height);
+                left: 14px;
+                right: 14px;
 
-        border: 1px solid var(--border);
+                padding: 18px;
 
-        border-radius: 16px;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
 
-        box-shadow: var(--shadow);
+                border: 1px solid var(--line);
+                border-radius: 18px;
 
-        display: none;
-    }
+                background: rgba(23,25,26,0.96);
 
-    .nav-links.active {
-        display: flex;
-    }
+                backdrop-filter: blur(20px);
 
-    .nav-links a {
-        display: block;
+                box-shadow: var(--shadow);
+            }
 
-        padding: 8px;
-    }
+            body.light .nav-links {
+                background: rgba(238,234,225,0.97);
+            }
 
-    .menu-btn {
-        display: grid;
-    }
+            .nav-links.open {
+                display: flex;
+            }
 
-    .hero h1 {
-        letter-spacing: -2px;
-    }
+            .nav-links a {
+                padding: 12px;
+            }
 
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
+            .mobile-toggle {
+                display: grid;
+            }
 
-    .timeline::before {
-        left: 8px;
-    }
+            .hero {
+                padding-top: 110px;
+            }
 
-    .timeline-item,
-    .timeline-item:nth-child(even) {
-        width: 100%;
+            .hero h1 {
+                font-size: clamp(44px, 14vw, 72px);
+                letter-spacing: -3px;
+            }
 
-        margin-left: 0;
+            .hero-description {
+                font-size: 15px;
+            }
 
-        padding-left: 35px;
-        padding-right: 0;
-    }
+            .hero-visual {
+                min-height: 400px;
+            }
 
-    .timeline-item:nth-child(odd)
-    .timeline-dot,
-    .timeline-item:nth-child(even)
-    .timeline-dot {
-        left: 2px;
-        right: auto;
-    }
-}
+            .visual-shell {
+                width: 390px;
+                max-width: 100%;
+            }
 
-@media (max-width: 560px) {
+            .profile-frame {
+                width: 52%;
+            }
 
-    section {
-        padding: 80px 0;
-    }
+            .tech-badge {
+                font-size: 8px;
+                padding: 7px 9px;
+            }
 
-    .skills-grid,
-    .projects-grid,
-    .cert-grid {
-        grid-template-columns: 1fr;
-    }
+            .b1 {
+                left: 0;
+            }
 
-    .about-panel {
-        grid-template-columns: 1fr;
-    }
+            .b2 {
+                right: 0;
+            }
 
-    .about-box:nth-child(n) {
-        transform: none;
-    }
+            .b3 {
+                right: 0;
+            }
 
-    .network-card {
-        padding: 20px;
-    }
+            .b4 {
+                left: 0;
+            }
 
-    .network-visual {
-        min-height: 400px;
-    }
+            .section {
+                padding: 85px 0;
+            }
 
-    .hero h1 {
-        font-size: 47px;
-    }
+            .section-title {
+                font-size: 38px;
+            }
 
-    .hero-text {
-        font-size: 16px;
-    }
+            .expertise-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
 
-    .footer-inner {
-        flex-direction: column;
+            .project-image {
+                height: 220px;
+            }
 
-        text-align: center;
-    }
-}
+            .form-row {
+                grid-template-columns: 1fr;
+            }
 
-</style>
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .hero-meta {
+                gap: 15px;
+            }
+
+            .hero-visual {
+                min-height: 350px;
+            }
+
+            .visual-shell {
+                transform: scale(0.88);
+            }
+
+            .about-card,
+            .skills-panel,
+            .contact-info,
+            .contact-form {
+                padding: 23px;
+            }
+        }
+
+
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+    </style>
 </head>
 
 
-<body class="">
+<body>
 
+    <!-- =========================================================
+         AMBIENT EFFECTS
+    ========================================================= -->
 
-<!-- =========================================================
-     NAVBAR
-========================================================= -->
+    <div class="mouse-glow" id="mouseGlow"></div>
+    <div class="particles" id="particles"></div>
 
-<header class="navbar" style="box-shadow: rgba(15, 23, 42, 0.06) 0px 10px 35px;">
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
-    <div class="container nav-inner">
 
-        <a href="file:///C:/Users/Badha/Downloads/indexx.html#home" class="logo">
+    <!-- =========================================================
+         NAVBAR
+    ========================================================= -->
 
-            <div class="logo-mark">
-                ⌘
-            </div>
+    <header class="navbar" id="navbar">
 
-            <div>
-                NET<span>WORK</span>
-            </div>
+        <div class="nav-inner">
 
-        </a>
+            <a href="#home" class="logo">
+                <div class="logo-mark">A</div>
+                <span>AB<span style="color:var(--primary)">.</span></span>
+            </a>
 
+            <nav class="nav-links" id="navLinks">
 
-        <ul class="nav-links" id="navLinks">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
 
-            <li>
-                <a href="file:///C:/Users/Badha/Downloads/indexx.html#home">
-                    <span class="en">Home</span>
-                    <span class="ar">الرئيسية</span>
-                </a>
-            </li>
+            </nav>
 
-            <li>
-                <a href="file:///C:/Users/Badha/Downloads/indexx.html#about">
-                    <span class="en">About</span>
-                    <span class="ar">عني</span>
-                </a>
-            </li>
+            <div class="nav-actions">
 
-            <li>
-                <a href="file:///C:/Users/Badha/Downloads/indexx.html#skills">
-                    <span class="en">Expertise</span>
-                    <span class="ar">التخصص</span>
-                </a>
-            </li>
+                <button class="nav-btn" id="languageBtn" title="Arabic">
+                    AR
+                </button>
 
-            <li>
-                <a href="file:///C:/Users/Badha/Downloads/indexx.html#projects">
-                    <span class="en">Projects</span>
-                    <span class="ar">المشاريع</span>
-                </a>
-            </li>
+                <button class="nav-btn" id="themeBtn" title="Toggle Theme">
+                    ☼
+                </button>
 
-            <li>
-                <a href="file:///C:/Users/Badha/Downloads/indexx.html#experience">
-                    <span class="en">Journey</span>
-                    <span class="ar">المسيرة</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="file:///C:/Users/Badha/Downloads/indexx.html#contact">
-                    <span class="en">Contact</span>
-                    <span class="ar">تواصل</span>
-                </a>
-            </li>
-
-        </ul>
-
-
-        <div class="nav-actions">
-
-            <button class="icon-btn" onclick="toggleLanguage()" title="Language">
-
-                <span id="languageIcon">AR</span>
-
-            </button>
-
-
-            <button class="icon-btn" onclick="toggleDarkMode()" title="Dark Mode">
-
-                <span id="themeIcon">☾</span>
-
-            </button>
-
-
-            <button class="icon-btn menu-btn" onclick="toggleMenu()">
-
-                ☰
-
-            </button>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section class="hero" id="home">
-
-    <div class="container hero-grid">
-
-        <div class="reveal show">
-
-            <div class="eyebrow">
-
-                <span class="status-dot"></span>
-
-                <span class="en">Abdulrahman Alsahli</span>
-
-                <span class="ar">عبدالرحمن السهلي</span>
-
-            </div>
-
-
-            <h1>
-
-                <span class="en"> Network <span>Specialist</span><br>
-                    </span>
-
-                <span class="ar">
-                    خبير
-                    <span>شبكات</span><br>
-                    </span>
-
-            </h1>
-
-
-            <p class="hero-text">
-
-                <span class="en">
-                    I am a Network Specialist focused on
-                    designing, managing and securing reliable
-                    network infrastructures that connect
-                    people, systems and organizations.
-                </span>
-
-                <span class="ar">
-                    متخصص في تصميم وإدارة وتأمين الشبكات
-                    والبنية التحتية التقنية، وأسعى إلى بناء
-                    بيئات شبكية موثوقة وآمنة وقابلة للتوسع.
-                </span>
-
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <a href="file:///C:/Users/Badha/Downloads/indexx.html#projects" class="btn btn-primary">
-
-                    <span class="en">
-                        Explore My Work →
-                    </span>
-
-                    <span class="ar">
-                        استعرض أعمالي ←
-                    </span>
-
-                </a>
-
-
-                <a href="file:///C:/Users/Badha/Downloads/indexx.html#contact" class="btn btn-outline">
-
-                    <span class="en">
-                        Let's Connect
-                    </span>
-
-                    <span class="ar">
-                        تواصل معي
-                    </span>
-
-                </a>
+                <button
+                    class="nav-btn mobile-toggle"
+                    id="mobileToggle"
+                    title="Menu"
+                >
+                    ☰
+                </button>
 
             </div>
 
         </div>
 
-
-        <!-- NETWORK VISUAL -->
-
-        <div class="network-visual reveal show">
-
-            <div class="network-card">
-
-                <div class="network-header">
-
-                    <strong>
-                        Network Infrastructure
-                    </strong>
-
-                    <span class="online">
-                        ● ONLINE
-                    </span>
-
-                </div>
+    </header>
 
 
-                <div class="network-diagram">
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
 
-                    <div class="node router">
-                        📡
-                        <small>Router</small>
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container">
+
+                <div class="hero-grid">
+
+                    <div class="hero-content">
+
+                        <div class="eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            Network Specialist
+                        </div>
+
+                        <h1>
+                            Building
+                            <span>Reliable Networks.</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            I work with
+                            <strong>network infrastructure, routing,
+                            switching and Windows environments</strong>,
+                            with a focus on practical troubleshooting,
+                            reliable connectivity and structured IT
+                            infrastructure.
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <a
+                                href="#projects"
+                                class="btn btn-primary magnetic"
+                            >
+                                View Projects
+                                <span>↗</span>
+                            </a>
+
+                            <a
+                                href="#contact"
+                                class="btn btn-secondary magnetic"
+                            >
+                                Contact Me
+                            </a>
+
+                        </div>
+
+                        <div class="hero-meta">
+
+                            <div class="meta-item">
+                                <span>◆</span>
+                                Network Infrastructure
+                            </div>
+
+                            <div class="meta-item">
+                                <span>◆</span>
+                                Windows Server
+                            </div>
+
+                            <div class="meta-item">
+                                <span>◆</span>
+                                Troubleshooting
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div class="node core">
-                        ⚡
-                        <small>Core</small>
-                    </div>
 
-                    <div class="node server">
-                        🖥️
-                        <small>Server</small>
-                    </div>
+                    <!-- HERO VISUAL -->
 
-                    <div class="node security">
-                        🛡️
-                        <small>Security</small>
-                    </div>
+                    <div class="hero-visual">
 
+                        <div class="visual-shell" id="visualShell">
 
-                    <div class="line one"></div>
-                    <div class="line two"></div>
-                    <div class="line three"></div>
+                            <div class="orbit orbit-1"></div>
+                            <div class="orbit orbit-2"></div>
+                            <div class="orbit orbit-3"></div>
 
-                </div>
+                            <div class="orbit-ball ball-1"></div>
+                            <div class="orbit-ball ball-2"></div>
+                            <div class="orbit-ball ball-3"></div>
+                            <div class="orbit-ball ball-4"></div>
 
+                            <div class="profile-frame">
 
-                <div class="network-footer">
+                                <div class="profile-image">
 
-                    <div class="network-stat">
-                        <strong>99.9%</strong>
-                        <span>Reliability</span>
-                    </div>
+                                    <img
+                                        src="IMG/profile.jpeg"
+                                        alt="Abdulrahman Alsahli"
+                                        onerror="
+                                            this.style.display='none';
+                                            this.nextElementSibling.style.display='grid';
+                                        "
+                                    >
 
-                    <div class="network-stat">
-                        <strong>24/7</strong>
-                        <span>Monitoring</span>
-                    </div>
+                                    <div
+                                        class="profile-placeholder"
+                                        style="display:none"
+                                    >
+                                        <div>
+                                            <strong>YOUR PHOTO</strong>
+                                            <br>
+                                            Replace:
+                                            <br>
+                                            IMG/profile.jpg
+                                        </div>
+                                    </div>
 
-                    <div class="network-stat">
-                        <strong>Secure</strong>
-                        <span>Infrastructure</span>
+                                </div>
+
+                            </div>
+
+                            <div class="tech-badge b1">
+                                DNS / DHCP
+                            </div>
+
+                            <div class="tech-badge b2">
+                                AD DS
+                            </div>
+
+                            <div class="tech-badge b3">
+                                OSPF
+                            </div>
+
+                            <div class="tech-badge b4">
+                                VLAN / STP
+                            </div>
+
+                            <div class="signal s1"></div>
+                            <div class="signal s2"></div>
+
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
 
-        </div>
-
-    </div>
-
-</section>
+        </section>
 
 
-<!-- =========================================================
-     TRUST BAR
-========================================================= -->
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
 
-<div class="trust">
+        <section class="section" id="about">
 
-    <div class="container trust-inner">
+            <div class="container">
 
-        <div class="trust-item">
-            CISCO NETWORKING
-        </div>
+                <div class="section-header reveal">
 
-        <div class="trust-item">
-            ROUTING &amp; SWITCHING
-        </div>
-
-        <div class="trust-item">
-            WINDOWS SERVER
-        </div>
-
-        <div class="trust-item">
-            NETWORK SECURITY
-        </div>
-
-        <div class="trust-item">
-            INFRASTRUCTURE
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================================================
-     ABOUT
-========================================================= -->
-
-<section id="about">
-
-    <div class="container">
-
-        <div class="center reveal show">
-
-            <div class="section-label">
-                About Me
-            </div>
-
-            <h2 class="section-title">
-
-                <span class="en">
-                    Connecting Technology<br>
-                    With Purpose.
-                </span>
-
-                <span class="ar">
-                    أربط التقنية<br>
-                    بالهدف.
-                </span>
-
-            </h2>
-
-            <p class="section-description">
-
-                <span class="en">
-                    A technical mindset with a strong interest
-                    in networking, infrastructure and secure
-                    enterprise environments.
-                </span>
-
-                <span class="ar">
-                    عقلية تقنية وشغف بمجال الشبكات والبنية
-                    التحتية والبيئات المؤسسية الآمنة.
-                </span>
-
-            </p>
-
-        </div>
-
-
-        <div class="about-grid">
-
-            <div class="about-content reveal show">
-
-                <p>
-
-                    <span class="en">
-                        My work revolves around designing and
-                        managing network environments from the
-                        initial planning stage to implementation,
-                        administration and troubleshooting.
-                    </span>
-
-                    <span class="ar">
-                        أعمل على تصميم وإدارة بيئات الشبكات
-                        ابتداءً من مرحلة التخطيط وتحليل المتطلبات،
-                        مرورًا بالتنفيذ والإدارة، ووصولًا إلى
-                        المراقبة واستكشاف الأخطاء وإصلاحها.
-                    </span>
-
-                </p>
-
-
-                <p>
-
-                    <span class="en">
-                        I focus on creating infrastructures that
-                        are reliable, scalable, organized and
-                        aligned with modern networking practices.
-                    </span>
-
-                    <span class="ar">
-                        أركز على بناء بنية تحتية موثوقة وقابلة
-                        للتوسع ومنظمة، مع تطبيق أفضل الممارسات
-                        الحديثة في مجال الشبكات.
-                    </span>
-
-                </p>
-
-
-                <ul class="check-list">
-
-                    <li>
-                        Network Design &amp; Architecture
-                    </li>
-
-                    <li>
-                        Routing &amp; Switching
-                    </li>
-
-                    <li>
-                        Network Security
-                    </li>
-
-                    <li>
-                        Windows Server Administration
-                    </li>
-
-                    <li>
-                        Infrastructure Troubleshooting
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <div class="about-panel reveal show">
-
-                <div class="about-box">
-
-                    <div class="about-icon">
-                        🌐
+                    <div class="section-kicker">
+                        About Me
                     </div>
 
-                    <h3>
-                        Network Design
-                    </h3>
+                    <h2 class="section-title">
+                        Networking with a
+                        practical mindset.
+                    </h2>
 
-                    <p>
-                        Designing structured and scalable
-                        network architectures.
+                    <p class="section-description">
+                        I focus on understanding how systems communicate,
+                        how infrastructure is structured, and how to
+                        troubleshoot problems efficiently.
                     </p>
 
                 </div>
 
 
-                <div class="about-box">
+                <div class="about-grid">
 
-                    <div class="about-icon">
-                        🔐
+                    <div class="about-card reveal">
+
+                        <h3>
+                            Network Specialist
+                        </h3>
+
+                        <p>
+                            My technical focus is on designing,
+                            configuring and troubleshooting network
+                            environments. I work with routing,
+                            switching, VLANs, IP addressing, DNS,
+                            DHCP and network services, while also
+                            working with Windows Server and
+                            Active Directory environments.
+                        </p>
+
+                        <br>
+
+                        <p>
+                            I also work with virtualization environments
+                            and network simulation tools to build and
+                            test practical infrastructure scenarios.
+                        </p>
+
                     </div>
 
-                    <h3>
-                        Security
-                    </h3>
 
-                    <p>
-                        Applying security concepts to protect
-                        network resources.
+                    <div class="about-card reveal">
+
+                        <div class="about-list">
+
+                            <div class="about-list-item">
+
+                                <div class="about-list-icon">
+                                    ↔
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Network Infrastructure
+                                    </strong>
+
+                                    <span>
+                                        Routing, switching,
+                                        VLANs, subnetting,
+                                        IP addressing and
+                                        network connectivity.
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="about-list-item">
+
+                                <div class="about-list-icon">
+                                    ◈
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Network Services
+                                    </strong>
+
+                                    <span>
+                                        DHCP, DNS, DHCP Relay,
+                                        IP Helper, A/PTR records
+                                        and network troubleshooting.
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="about-list-item">
+
+                                <div class="about-list-icon">
+                                    ▣
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Windows Administration
+                                    </strong>
+
+                                    <span>
+                                        Windows Server, AD DS,
+                                        Group Policy, file servers,
+                                        shared folders and permissions.
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="about-list-item">
+
+                                <div class="about-list-icon">
+                                    ◉
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        End-User Support
+                                    </strong>
+
+                                    <span>
+                                        Hardware and software
+                                        troubleshooting, connectivity
+                                        issues and user support.
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EXPERTISE
+        ====================================================== -->
+
+        <section class="section" id="expertise">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-kicker">
+                        Expertise
+                    </div>
+
+                    <h2 class="section-title">
+                        Core areas I work with.
+                    </h2>
+
+                    <p class="section-description">
+                        A practical combination of networking,
+                        infrastructure, Windows administration
+                        and technical support.
                     </p>
 
                 </div>
 
 
-                <div class="about-box">
+                <div class="expertise-grid">
 
-                    <div class="about-icon">
-                        ⚙️
-                    </div>
+                    <article class="expertise-card reveal">
 
-                    <h3>
-                        Infrastructure
-                    </h3>
+                        <div class="expertise-number">
+                            01
+                        </div>
 
-                    <p>
-                        Managing servers, services and
-                        technical infrastructure.
-                    </p>
+                        <div class="expertise-icon">
+                            ↔
+                        </div>
 
-                </div>
+                        <h3>
+                            Routing & Switching
+                        </h3>
 
+                        <p>
+                            VLAN configuration, inter-VLAN routing,
+                            OSPF, subnetting, IP addressing,
+                            routing tables and switching concepts.
+                        </p>
 
-                <div class="about-box">
+                    </article>
 
-                    <div class="about-icon">
-                        🔎
-                    </div>
 
-                    <h3>
-                        Troubleshooting
-                    </h3>
+                    <article class="expertise-card reveal">
 
-                    <p>
-                        Analyzing network issues and finding
-                        effective solutions.
-                    </p>
+                        <div class="expertise-number">
+                            02
+                        </div>
 
-                </div>
+                        <div class="expertise-icon">
+                            ◇
+                        </div>
 
-            </div>
+                        <h3>
+                            Network Services
+                        </h3>
 
-        </div>
+                        <p>
+                            DHCP, DNS, DHCP Relay, IP Helper,
+                            A records, PTR records and
+                            troubleshooting network services.
+                        </p>
 
-    </div>
+                    </article>
 
-</section>
 
+                    <article class="expertise-card reveal">
 
-<!-- =========================================================
-     SKILLS
-========================================================= -->
+                        <div class="expertise-number">
+                            03
+                        </div>
 
-<section class="skills-section" id="skills">
+                        <div class="expertise-icon">
+                            ▣
+                        </div>
 
-    <div class="container">
-
-        <div class="center reveal show">
-
-            <div class="section-label">
-                Expertise
-            </div>
-
-            <h2 class="section-title">
-
-                <span class="en">
-                    Technical Expertise
-                </span>
-
-                <span class="ar">
-                    المهارات التقنية
-                </span>
-
-            </h2>
-
-            <p class="section-description">
-
-                <span class="en">
-                    Core technologies and areas I work with
-                    and continuously develop.
-                </span>
-
-                <span class="ar">
-                    أهم المجالات والتقنيات التي أعمل عليها
-                    وأطور خبرتي فيها باستمرار.
-                </span>
-
-            </p>
-
-        </div>
-
-
-        <div class="skills-grid">
-
-            <div class="skill reveal show">
-
-                <div class="skill-top">
-
-                    <div class="skill-icon">
-                        🔀
-                    </div>
-
-                    <span class="skill-percent">
-                        90%
-                    </span>
-
-                </div>
-
-                <h3>
-                    Routing &amp; Switching
-                </h3>
-
-                <p>
-                    VLANs, OSPF, STP, routing,
-                    switching and network fundamentals.
-                </p>
-
-                <div class="progress">
-                    <span style="width:90%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="skill reveal show">
-
-                <div class="skill-top">
-
-                    <div class="skill-icon">
-                        🌐
-                    </div>
-
-                    <span class="skill-percent">
-                        88%
-                    </span>
-
-                </div>
-
-                <h3>
-                    Network Design
-                </h3>
-
-                <p>
-                    Enterprise topology, IP addressing,
-                    segmentation and scalability.
-                </p>
-
-                <div class="progress">
-                    <span style="width:88%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="skill reveal show">
-
-                <div class="skill-top">
-
-                    <div class="skill-icon">
-                        🖥️
-                    </div>
-
-                    <span class="skill-percent">
-                        85%
-                    </span>
-
-                </div>
-
-                <h3>
-                    Windows Server
-                </h3>
-
-                <p>
-                    Active Directory, DNS, DHCP,
-                    users, groups and permissions.
-                </p>
-
-                <div class="progress">
-                    <span style="width:85%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="skill reveal show">
-
-                <div class="skill-top">
-
-                    <div class="skill-icon">
-                        🛡️
-                    </div>
-
-                    <span class="skill-percent">
-                        82%
-                    </span>
-
-                </div>
-
-                <h3>
-                    Network Security
-                </h3>
-
-                <p>
-                    Segmentation, access control,
-                    firewalls and secure architectures.
-                </p>
-
-                <div class="progress">
-                    <span style="width:82%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="skill reveal show">
-
-                <div class="skill-top">
-
-                    <div class="skill-icon">
-                        🧩
-                    </div>
-
-                    <span class="skill-percent">
-                        80%
-                    </span>
-
-                </div>
-
-                <h3>
-                    Infrastructure
-                </h3>
-
-                <p>
-                    Servers, services, network infrastructure
-                    and system integration.
-                </p>
-
-                <div class="progress">
-                    <span style="width:80%"></span>
-                </div>
-
-            </div>
-
-
-            <div class="skill reveal show">
-
-                <div class="skill-top">
-
-                    <div class="skill-icon">
-                        🔍
-                    </div>
-
-                    <span class="skill-percent">
-                        90%
-                    </span>
-
-                </div>
-
-                <h3>
-                    Troubleshooting
-                </h3>
-
-                <p>
-                    Logical analysis, diagnostics and
-                    systematic problem solving.
-                </p>
-
-                <div class="progress">
-                    <span style="width:90%"></span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PROJECTS
-========================================================= -->
-
-<section id="projects">
-
-    <div class="container">
-
-        <div class="center reveal show">
-
-            <div class="section-label">
-                Selected Work
-            </div>
-
-            <h2 class="section-title">
-
-                <span class="en">
-                    Featured Projects
-                </span>
-
-                <span class="ar">
-                    أبرز المشاريع
-                </span>
-
-            </h2>
-
-            <p class="section-description">
-
-                <span class="en">
-                    Practical projects demonstrating my
-                    networking and infrastructure knowledge.
-                </span>
-
-                <span class="ar">
-                    مشاريع عملية توضح معرفتي في الشبكات
-                    والبنية التحتية.
-                </span>
-
-            </p>
-
-        </div>
-
-
-        <div class="projects-grid">
-
-
-            <!-- PROJECT 1 -->
-
-            <article class="project reveal show">
-
-                <div class="project-image">
-
-                    <div class="project-symbol">
- <img src="./img/img.png" alt="image" style="width: 450px; height: 100; object-fit: contain;">
-                    </div>
-
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Enterprise Network
-                    </h3>
-
-                    <p>
-
-                        <span class="en">
-                            Multi-branch enterprise network
-                            designed with VLAN segmentation,
-                            routing and centralized infrastructure.
-                        </span>
-
-                        <span class="ar">
-                            تصميم شبكة مؤسسية متعددة الفروع
-                            باستخدام VLANs وتقنيات التوجيه
-                            وبنية تحتية مركزية.
-                        </span>
-
-                    </p>
-
-                    <div class="tags">
-
-                        <span class="tag">
-                            VLAN
-                        </span>
-
-                        <span class="tag">
-                            OSPF
-                        </span>
-
-                        <span class="tag">
-                            Routing
-                        </span>
-
-                        <span class="tag">
-                            Switching
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- PROJECT 2 -->
-
-            <article class="project reveal show">
-
-                <div class="project-image">
-
-                    <div class="project-symbol">
-                        🖥️
-                    </div>
-
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Windows Server Infrastructure
-                    </h3>
-
-                    <p>
-
-                        <span class="en">
-                            Server environment including Active
-                            Directory, DNS, DHCP, users, groups,
-                            shared folders and permissions.
-                        </span>
-
-                        <span class="ar">
-                            بيئة Windows Server تشمل Active Directory
-                            وDNS وDHCP وإدارة المستخدمين والمجموعات
-                            والمجلدات والصلاحيات.
-                        </span>
-
-                    </p>
-
-                    <div class="tags">
-
-                        <span class="tag">
-                            AD DS
-                        </span>
-
-                        <span class="tag">
-                            DNS
-                        </span>
-
-                        <span class="tag">
-                            DHCP
-                        </span>
-
-                        <span class="tag">
+                        <h3>
                             Windows Server
-                        </span>
+                        </h3>
 
-                    </div>
+                        <p>
+                            Windows Server administration,
+                            Active Directory Domain Services,
+                            Group Policy, file servers and
+                            shared folder permissions.
+                        </p>
 
-                </div>
+                    </article>
 
-            </article>
 
+                    <article class="expertise-card reveal">
 
-            <!-- PROJECT 3 -->
+                        <div class="expertise-number">
+                            04
+                        </div>
 
-            <article class="project reveal show">
+                        <div class="expertise-icon">
+                            ⌁
+                        </div>
 
-                <div class="project-image">
+                        <h3>
+                            Network Troubleshooting
+                        </h3>
 
-                    <div class="project-symbol">
-                        🔐
-                    </div>
+                        <p>
+                            Diagnosing connectivity problems,
+                            DNS and DHCP issues, IP configuration,
+                            routing problems and endpoint connectivity.
+                        </p>
 
-                </div>
+                    </article>
 
-                <div class="project-content">
 
-                    <h3>
-                        Secure Network Architecture
-                    </h3>
+                    <article class="expertise-card reveal">
 
-                    <p>
+                        <div class="expertise-number">
+                            05
+                        </div>
 
-                        <span class="en">
-                            Network security architecture using
-                            segmentation, controlled access and
-                            secure zones.
-                        </span>
+                        <div class="expertise-icon">
+                            ◉
+                        </div>
 
-                        <span class="ar">
-                            تصميم بنية شبكية آمنة باستخدام عزل
-                            الشبكات والتحكم بالوصول وتقسيم
-                            المناطق الأمنية.
-                        </span>
+                        <h3>
+                            Network Monitoring
+                        </h3>
 
-                    </p>
+                        <p>
+                            Monitoring network connectivity,
+                            identifying abnormal behavior,
+                            checking services and analyzing
+                            network performance.
+                        </p>
 
-                    <div class="tags">
+                    </article>
 
-                        <span class="tag">
-                            Security
-                        </span>
 
-                        <span class="tag">
-                            Firewall
-                        </span>
+                    <article class="expertise-card reveal">
 
-                        <span class="tag">
-                            DMZ
-                        </span>
+                        <div class="expertise-number">
+                            06
+                        </div>
 
-                        <span class="tag">
-                            ACL
-                        </span>
+                        <div class="expertise-icon">
+                            ⚙
+                        </div>
 
-                    </div>
+                        <h3>
+                            End-User Support
+                        </h3>
 
-                </div>
+                        <p>
+                            Hardware and software troubleshooting,
+                            Windows configuration, connectivity
+                            issues and technical assistance.
+                        </p>
 
-            </article>
-
-
-            <!-- PROJECT 4 -->
-
-            <article class="project reveal show">
-
-                <div class="project-image">
-
-                    <div class="project-symbol">
-                        🏢
-                    </div>
-
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Multi-Branch Infrastructure
-                    </h3>
-
-                    <p>
-
-                        <span class="en">
-                            Network architecture connecting
-                            multiple branches through structured
-                            routing and centralized management.
-                        </span>
-
-                        <span class="ar">
-                            بنية شبكية تربط عدة فروع باستخدام
-                            التوجيه المنظم والإدارة المركزية.
-                        </span>
-
-                    </p>
-
-                    <div class="tags">
-
-                        <span class="tag">
-                            WAN
-                        </span>
-
-                        <span class="tag">
-                            OSPF
-                        </span>
-
-                        <span class="tag">
-                            IP Schema
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- PROJECT 5 -->
-
-            <article class="project reveal show">
-
-                <div class="project-image">
-
-                    <div class="project-symbol">
-                         <img src="img/img2.png" alt="image" style="width: 450px; height: 100; object-fit: contain;">
-
-                    </div>
-
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Network Simulation Lab
-                    </h3>
-
-                    <p>
-
-                        <span class="en">
-                            Practical network simulation environment
-                            for testing routing, VLANs, DHCP and
-                            connectivity.
-                        </span>
-
-                        <span class="ar">
-                            بيئة محاكاة عملية لاختبار التوجيه
-                            وVLANs وDHCP والاتصال بين الشبكات.
-                        </span>
-
-                    </p>
-
-                    <div class="tags">
-
-                        <span class="tag">
-                            Cisco
-                        </span>
-
-                        <span class="tag">
-                            Packet Tracer
-                        </span>
-
-                        <span class="tag">
-                            Lab
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- PROJECT 6 -->
-
-            <article class="project reveal show">
-
-                <div class="project-image">
-
-                    <div class="project-symbol">
-                        ⚙️
-                    </div>
-
-                </div>
-
-                <div class="project-content">
-
-                    <h3>
-                        Network Services
-                    </h3>
-
-                    <p>
-
-                        <span class="en">
-                            Deployment and management of essential
-                            network services including DNS, DHCP
-                            and directory services.
-                        </span>
-
-                        <span class="ar">
-                            إعداد وإدارة خدمات الشبكة الأساسية
-                            مثل DNS وDHCP وخدمات الدليل.
-                        </span>
-
-                    </p>
-
-                    <div class="tags">
-
-                        <span class="tag">
-                            DNS
-                        </span>
-
-                        <span class="tag">
-                            DHCP
-                        </span>
-
-                        <span class="tag">
-                            AD DS
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     EXPERIENCE / JOURNEY
-========================================================= -->
-
-<section class="experience" id="experience">
-
-    <div class="container">
-
-        <div class="center reveal show">
-
-            <div class="section-label">
-                My Journey
-            </div>
-
-            <h2 class="section-title">
-
-                <span class="en">
-                    Learning &amp; Development
-                </span>
-
-                <span class="ar">
-                    المسيرة والتطور
-                </span>
-
-            </h2>
-
-            <p class="section-description">
-
-                <span class="en">
-                    A continuous journey of learning,
-                    experimentation and technical growth.
-                </span>
-
-                <span class="ar">
-                    رحلة مستمرة من التعلم والتجربة
-                    والتطور التقني.
-                </span>
-
-            </p>
-
-        </div>
-
-
-        <div class="timeline">
-
-
-            <div class="timeline-item reveal show">
-
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-card">
-
-                    <div class="timeline-date">
-                        PHASE 01
-                    </div>
-
-                    <h3>
-                        Networking Fundamentals
-                    </h3>
-
-                    <p>
-                        Building a strong foundation in IP
-                        addressing, subnetting, Ethernet,
-                        routing and switching.
-                    </p>
+                    </article>
 
                 </div>
 
             </div>
 
+        </section>
 
-            <div class="timeline-item reveal show">
 
-                <div class="timeline-dot"></div>
+        <!-- =====================================================
+             SKILLS
+        ====================================================== -->
 
-                <div class="timeline-card">
+        <section class="section" id="skills">
 
-                    <div class="timeline-date">
-                        PHASE 02
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-kicker">
+                        Technical Skills
                     </div>
 
-                    <h3>
-                        Cisco Networking
-                    </h3>
+                    <h2 class="section-title">
+                        Tools, protocols & technologies.
+                    </h2>
 
-                    <p>
-                        Working with VLANs, trunking, routing,
-                        OSPF, STP and network troubleshooting.
+                    <p class="section-description">
+                        Technologies and concepts I work with
+                        across networking and Windows environments.
                     </p>
 
                 </div>
 
-            </div>
+
+                <div class="skills-layout">
+
+                    <div class="skills-panel reveal">
+
+                        <div class="skill">
+
+                            <div class="skill-top">
+                                <span>Network Infrastructure</span>
+                                <span>90%</span>
+                            </div>
+
+                            <div class="skill-bar">
+                                <div
+                                    class="skill-fill"
+                                    data-width="90%"
+                                ></div>
+                            </div>
+
+                        </div>
 
 
-            <div class="timeline-item reveal show">
+                        <div class="skill">
 
-                <div class="timeline-dot"></div>
+                            <div class="skill-top">
+                                <span>Routing & Switching</span>
+                                <span>86%</span>
+                            </div>
 
-                <div class="timeline-card">
+                            <div class="skill-bar">
+                                <div
+                                    class="skill-fill"
+                                    data-width="86%"
+                                ></div>
+                            </div>
 
-                    <div class="timeline-date">
-                        PHASE 03
+                        </div>
+
+
+                        <div class="skill">
+
+                            <div class="skill-top">
+                                <span>Windows Server</span>
+                                <span>84%</span>
+                            </div>
+
+                            <div class="skill-bar">
+                                <div
+                                    class="skill-fill"
+                                    data-width="84%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill">
+
+                            <div class="skill-top">
+                                <span>Network Troubleshooting</span>
+                                <span>88%</span>
+                            </div>
+
+                            <div class="skill-bar">
+                                <div
+                                    class="skill-fill"
+                                    data-width="88%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill">
+
+                            <div class="skill-top">
+                                <span>Active Directory</span>
+                                <span>80%</span>
+                            </div>
+
+                            <div class="skill-bar">
+                                <div
+                                    class="skill-fill"
+                                    data-width="80%"
+                                ></div>
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <h3>
-                        Server Infrastructure
-                    </h3>
 
-                    <p>
-                        Developing practical knowledge in
-                        Windows Server, Active Directory,
-                        DNS and DHCP.
+                    <div class="skills-panel reveal">
+
+                        <div class="tag-cloud">
+
+                            <span class="tag">TCP/IP</span>
+                            <span class="tag">IPv4</span>
+                            <span class="tag">Subnetting</span>
+                            <span class="tag">VLAN</span>
+                            <span class="tag">OSPF</span>
+                            <span class="tag">STP</span>
+                            <span class="tag">ARP</span>
+                            <span class="tag">DHCP</span>
+                            <span class="tag">DNS</span>
+                            <span class="tag">DHCP Relay</span>
+                            <span class="tag">IP Helper</span>
+                            <span class="tag">A Records</span>
+                            <span class="tag">PTR Records</span>
+                            <span class="tag">Cisco</span>
+                            <span class="tag">Packet Tracer</span>
+                            <span class="tag">Windows Server</span>
+                            <span class="tag">AD DS</span>
+                            <span class="tag">Group Policy</span>
+                            <span class="tag">File Server</span>
+                            <span class="tag">PowerShell</span>
+                            <span class="tag">VMware</span>
+                            <span class="tag">VirtualBox</span>
+                            <span class="tag">End-User Support</span>
+                            <span class="tag">Network Monitoring</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROJECTS
+        ====================================================== -->
+
+        <section class="section" id="projects">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-kicker">
+                        Selected Projects
+                    </div>
+
+                    <h2 class="section-title">
+                        Practical infrastructure projects.
+                    </h2>
+
+                    <p class="section-description">
+                        Projects focused on real-world networking,
+                        server administration and infrastructure design.
                     </p>
 
                 </div>
 
+
+                <div class="projects-grid">
+
+                    <!-- PROJECT 1 -->
+
+                    <article class="project-card reveal">
+
+                        <div
+                            class="project-image project-clickable"
+                            data-image="IMG/windows-server.jpg"
+                        >
+
+                            <img
+                                src="IMG/windows-server.jpg"
+                                alt="Windows Server Project"
+                                onerror="this.style.display='none'"
+                            >
+
+                            <div class="project-placeholder">
+
+                                <div>
+                                    <strong>
+                                        WINDOWS SERVER
+                                    </strong>
+
+                                    Project Preview
+                                    <br>
+                                    IMG/windows-server.jpg
+                                </div>
+
+                            </div>
+
+                            <div class="project-overlay">
+                                <span class="project-tag">
+                                    WINDOWS SERVER 2022
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-body">
+
+                            <div class="project-tags">
+                                <span class="project-tag">AD DS</span>
+                                <span class="project-tag">DNS</span>
+                                <span class="project-tag">DHCP</span>
+                                <span class="project-tag">GPO</span>
+                            </div>
+
+                            <h3>
+                                Windows Server Infrastructure
+                            </h3>
+
+                            <p>
+                                A Windows Server environment including
+                                Active Directory, DNS, DHCP, organizational
+                                units, security groups, shared folders
+                                and permissions.
+                            </p>
+
+                            <a
+                                href="#contact"
+                                class="project-link"
+                            >
+                                Discuss Project →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PROJECT 2 -->
+
+                    <article class="project-card reveal">
+
+                        <div
+                            class="project-image project-clickable"
+                            data-image="IMG/network-design.jpg"
+                        >
+
+                            <img
+                                src="IMG/network-design.jpg"
+                                alt="Network Design Project"
+                                onerror="this.style.display='none'"
+                            >
+
+                            <div class="project-placeholder">
+
+                                <div>
+                                    <strong>
+                                        NETWORK DESIGN
+                                    </strong>
+
+                                    Project Preview
+                                    <br>
+                                    IMG/network-design.jpg
+                                </div>
+
+                            </div>
+
+                            <div class="project-overlay">
+                                <span class="project-tag">
+                                    NETWORK INFRASTRUCTURE
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-body">
+
+                            <div class="project-tags">
+                                <span class="project-tag">VLAN</span>
+                                <span class="project-tag">OSPF</span>
+                                <span class="project-tag">IPv4</span>
+                                <span class="project-tag">SUBNETTING</span>
+                            </div>
+
+                            <h3>
+                                Enterprise Network Design
+                            </h3>
+
+                            <p>
+                                Structured network topology with
+                                VLAN segmentation, IP addressing,
+                                routing, switching and multiple
+                                network departments.
+                            </p>
+
+                            <a
+                                href="#contact"
+                                class="project-link"
+                            >
+                                Discuss Project →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PROJECT 3 -->
+
+                    <article class="project-card reveal">
+
+                        <div
+                            class="project-image project-clickable"
+                            data-image="IMG/packet-tracer.jpg"
+                        >
+
+                            <img
+                                src="IMG/packet-tracer.jpg"
+                                alt="Cisco Packet Tracer Project"
+                                onerror="this.style.display='none'"
+                            >
+
+                            <div class="project-placeholder">
+
+                                <div>
+                                    <strong>
+                                        PACKET TRACER
+                                    </strong>
+
+                                    Project Preview
+                                    <br>
+                                    IMG/packet-tracer.jpg
+                                </div>
+
+                            </div>
+
+                            <div class="project-overlay">
+                                <span class="project-tag">
+                                    CISCO
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-body">
+
+                            <div class="project-tags">
+                                <span class="project-tag">CISCO</span>
+                                <span class="project-tag">OSPF</span>
+                                <span class="project-tag">VLAN</span>
+                                <span class="project-tag">STP</span>
+                            </div>
+
+                            <h3>
+                                Cisco Network Simulation
+                            </h3>
+
+                            <p>
+                                Network simulation and troubleshooting
+                                using Cisco Packet Tracer with routers,
+                                switches, VLANs, routing protocols
+                                and network services.
+                            </p>
+
+                            <a
+                                href="#contact"
+                                class="project-link"
+                            >
+                                Discuss Project →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PROJECT 4 -->
+
+                    <article class="project-card reveal">
+
+                        <div
+                            class="project-image project-clickable"
+                            data-image="IMG/active-directory.jpg"
+                        >
+
+                            <img
+                                src="IMG/active-directory.jpg"
+                                alt="Active Directory Project"
+                                onerror="this.style.display='none'"
+                            >
+
+                            <div class="project-placeholder">
+
+                                <div>
+                                    <strong>
+                                        ACTIVE DIRECTORY
+                                    </strong>
+
+                                    Project Preview
+                                    <br>
+                                    IMG/active-directory.jpg
+                                </div>
+
+                            </div>
+
+                            <div class="project-overlay">
+                                <span class="project-tag">
+                                    AD DS
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-body">
+
+                            <div class="project-tags">
+                                <span class="project-tag">AD DS</span>
+                                <span class="project-tag">OU</span>
+                                <span class="project-tag">GPO</span>
+                                <span class="project-tag">POWERSHELL</span>
+                            </div>
+
+                            <h3>
+                                Active Directory Environment
+                            </h3>
+
+                            <p>
+                                Domain-based Windows environment with
+                                organizational units, users, groups,
+                                policies, shared resources and
+                                centralized administration.
+                            </p>
+
+                            <a
+                                href="#contact"
+                                class="project-link"
+                            >
+                                Discuss Project →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
             </div>
 
+        </section>
 
-            <div class="timeline-item reveal show">
 
-                <div class="timeline-dot"></div>
+        <!-- =====================================================
+             DEVELOPMENT / TECH
+        ====================================================== -->
 
-                <div class="timeline-card">
+        <section class="section development">
 
-                    <div class="timeline-date">
-                        PHASE 04
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-kicker">
+                        Technology
                     </div>
 
-                    <h3>
-                        Advanced Networking
-                    </h3>
+                    <h2 class="section-title">
+                        Connecting systems,
+                        services and people.
+                    </h2>
 
-                    <p>
-                        Expanding knowledge into enterprise
-                        architecture, network security and
-                        scalable infrastructure.
+                </div>
+
+
+                <div class="dev-box reveal">
+
+                    <div class="dev-orbit"></div>
+                    <div class="dev-orbit"></div>
+                    <div class="dev-orbit"></div>
+
+                    <div class="dev-core">
+
+                        <div>
+                            <strong>
+                                NETWORK
+                            </strong>
+
+                            <span>
+                                INFRASTRUCTURE
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="dev-chip c1">
+                        ROUTING
+                    </div>
+
+                    <div class="dev-chip c2">
+                        SWITCHING
+                    </div>
+
+                    <div class="dev-chip c3">
+                        WINDOWS
+                    </div>
+
+                    <div class="dev-chip c4">
+                        SECURITY
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <section class="section" id="contact">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-kicker">
+                        Contact
+                    </div>
+
+                    <h2 class="section-title">
+                        Let's connect.
+                    </h2>
+
+                    <p class="section-description">
+                        Interested in networking, infrastructure
+                        or technical projects? Feel free to reach out.
                     </p>
 
                 </div>
 
-            </div>
 
-        </div>
+                <div class="contact-grid">
 
-    </div>
+                    <div class="contact-info reveal">
 
-</section>
+                        <h3>
+                            Get in touch
+                        </h3>
 
-
-<!-- =========================================================
-     CERTIFICATIONS
-========================================================= -->
-
-<section id="certifications">
-
-    <div class="container">
-
-        <div class="center reveal show">
-
-            <div class="section-label">
-                Certifications
-            </div>
-
-            <h2 class="section-title">
-
-                <span class="en">
-                    Certifications &amp; Goals
-                </span>
-
-                <span class="ar">
-                    الشهادات والأهداف
-                </span>
-
-            </h2>
-
-            <p class="section-description">
-
-                <span class="en">
-                    Professional certifications and technical
-                    paths I am pursuing.
-                </span>
-
-                <span class="ar">
-                    الشهادات والمسارات التقنية التي أعمل
-                    على تطويرها.
-                </span>
-
-            </p>
-
-        </div>
+                        <p>
+                            Replace the contact details below with
+                            your actual information before publishing
+                            the website.
+                        </p>
 
 
-        <div class="cert-grid">
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                @
+                            </div>
+
+                            <div>
+                                <small>Email</small>
+
+                                <strong>
+                                    your-email@gmail.com
+                                </strong>
+                            </div>
+
+                        </div>
 
 
-            <div class="cert reveal show">
+                        <div class="contact-item">
 
-                <div class="cert-logo">
-                    🌐
+                            <div class="contact-icon">
+                                in
+                            </div>
+
+                            <div>
+                                <small>LinkedIn</small>
+
+                                <strong>
+                                    linkedin.com/in/your-profile
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                GH
+                            </div>
+
+                            <div>
+                                <small>GitHub</small>
+
+                                <strong>
+                                    github.com/your-username
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <form class="contact-form reveal" id="contactForm">
+
+                        <div class="form-row">
+
+                            <div class="field">
+
+                                <label>
+                                    Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Your name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="your@email.com"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Subject
+                            </label>
+
+                            <input
+                                type="text"
+                                name="subject"
+                                placeholder="How can I help?"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Message
+                            </label>
+
+                            <textarea
+                                name="message"
+                                placeholder="Write your message..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary magnetic"
+                        >
+                            Send Message
+                            <span>↗</span>
+                        </button>
+
+                    </form>
+
                 </div>
 
-                <h3>
-                    CCNA
-                </h3>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-inner">
 
                 <p>
-                    Cisco Certified Network Associate
+                    © 2026 Abdulrahman Alsahli. All rights reserved.
                 </p>
 
-            </div>
-
-
-            <div class="cert reveal show">
-
-                <div class="cert-logo">
-                    🚀
+                <div class="footer-mark">
+                    NETWORK SPECIALIST
                 </div>
 
-                <h3>
-                    CCNP
-                </h3>
-
-                <p>
-                    Advanced Enterprise Networking
-                </p>
-
-            </div>
-
-
-            <div class="cert reveal show">
-
-                <div class="cert-logo">
-                    🛡️
-                </div>
-
-                <h3>
-                    CompTIA Security+
-                </h3>
-
-                <p>
-                    Cybersecurity Fundamentals
-                </p>
-
             </div>
 
         </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         LIGHTBOX
+    ========================================================= -->
+
+    <div class="lightbox" id="lightbox">
+
+        <button
+            class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt="Project Preview"
+        >
 
     </div>
 
-</section>
 
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
 
-<!-- =========================================================
-     CONTACT
-========================================================= -->
+    <script>
 
-<section class="contact" id="contact">
+        /* =====================================================
+           THEME
+        ====================================================== */
 
-    <div class="container">
+        const themeBtn = document.getElementById("themeBtn");
 
-        <div class="contact-box reveal show">
+        const savedTheme = localStorage.getItem("theme");
 
-            <div class="section-label">
-                Get In Touch
-            </div>
+        if (savedTheme === "light") {
+            document.body.classList.add("light");
+            themeBtn.textContent = "☾";
+        } else {
+            themeBtn.textContent = "☼";
+        }
 
-            <h2 class="section-title">
+        themeBtn.addEventListener("click", () => {
 
-                <span class="en">
-                    Let's Build Something
-                    <span style="color:var(--primary)">
-                        Connected.
-                    </span>
-                </span>
+            document.body.classList.toggle("light");
 
-                <span class="ar">
-                    لنبنِ شيئًا
-                    <span style="color:var(--primary)">
-                        متصلًا.
-                    </span>
-                </span>
+            const isLight =
+                document.body.classList.contains("light");
 
-            </h2>
+            localStorage.setItem(
+                "theme",
+                isLight ? "light" : "dark"
+            );
 
+            themeBtn.textContent =
+                isLight ? "☾" : "☼";
 
-            <p class="section-description">
+        });
 
-                <span class="en">
-                    Whether it's a networking project,
-                    technical opportunity or simply a
-                    conversation about technology,
-                    feel free to reach out.
-                </span>
 
-                <span class="ar">
-                    سواء كان مشروعًا في مجال الشبكات أو فرصة
-                    تقنية أو مجرد نقاش حول التقنية، يسعدني
-                    التواصل معك.
-                </span>
+        /* =====================================================
+           MOBILE MENU
+        ====================================================== */
 
-            </p>
+        const mobileToggle =
+            document.getElementById("mobileToggle");
 
+        const navLinks =
+            document.getElementById("navLinks");
 
-            <div class="hero-buttons" style="justify-content:center; margin-top:25px;">
+        mobileToggle.addEventListener("click", () => {
 
-                <a href="mailto:abdulrahman.ssa121@gmail.com" class="btn btn-primary">
+            navLinks.classList.toggle("open");
 
-                    ✉️
+            mobileToggle.textContent =
+                navLinks.classList.contains("open")
+                    ? "×"
+                    : "☰";
 
-                    <span class="en">
-                        Email Me
-                    </span>
+        });
 
-                    <span class="ar">
-                        راسلني
-                    </span>
 
-                </a>
+        document.querySelectorAll(".nav-links a")
+            .forEach(link => {
 
+                link.addEventListener("click", () => {
 
-                <a href="https://www.linkedin.com/in/abdulrahman-alsahli-751006378?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" class="btn btn-outline">
+                    navLinks.classList.remove("open");
 
-                    in
+                    mobileToggle.textContent = "☰";
 
-                    LinkedIn
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-    <div class="container footer-inner">
-
-        <div class="footer-brand">Abdulrahman Alsahli<span></span>
-            — Network Specialist
-
-        </div>
-
-        <div class="footer-copy">
-
-            © 2026 Abdulrahman Alsahli. All Rights Reserved.
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
-<script>
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-function toggleMenu() {
-
-    const nav =
-        document.getElementById("navLinks");
-
-    nav.classList.toggle("active");
-
-}
-
-
-/* Close menu after clicking link */
-
-document.querySelectorAll(".nav-links a")
-.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        document
-            .getElementById("navLinks")
-            .classList.remove("active");
-
-    });
-
-});
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-function toggleDarkMode() {
-
-    document.body.classList.toggle("dark");
-
-    const icon =
-        document.getElementById("themeIcon");
-
-    if (
-        document.body.classList.contains("dark")
-    ) {
-
-        icon.textContent = "☀️";
-
-        localStorage.setItem(
-            "theme",
-            "dark"
-        );
-
-    } else {
-
-        icon.textContent = "☾";
-
-        localStorage.setItem(
-            "theme",
-            "light"
-        );
-
-    }
-
-}
-
-
-/* Load saved theme */
-
-if (
-    localStorage.getItem("theme")
-    === "dark"
-) {
-
-    document.body.classList.add("dark");
-
-    document.getElementById("themeIcon")
-        .textContent = "☀️";
-
-}
-
-
-/* =========================================================
-   LANGUAGE
-========================================================= */
-
-function toggleLanguage() {
-
-    document.body.classList.toggle("rtl");
-
-    const icon =
-        document.getElementById("languageIcon");
-
-    if (
-        document.body.classList.contains("rtl")
-    ) {
-
-        document.documentElement.lang = "ar";
-
-        document.documentElement.dir = "rtl";
-
-        icon.textContent = "EN";
-
-        localStorage.setItem(
-            "language",
-            "ar"
-        );
-
-    } else {
-
-        document.documentElement.lang = "en";
-
-        document.documentElement.dir = "ltr";
-
-        icon.textContent = "AR";
-
-        localStorage.setItem(
-            "language",
-            "en"
-        );
-
-    }
-
-}
-
-
-/* Load saved language */
-
-if (
-    localStorage.getItem("language")
-    === "ar"
-) {
-
-    document.body.classList.add("rtl");
-
-    document.documentElement.lang = "ar";
-
-    document.documentElement.dir = "rtl";
-
-    document.getElementById("languageIcon")
-        .textContent = "EN";
-
-}
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-const observer =
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target
-                        .classList
-                        .add("show");
-
-                    observer.unobserve(
-                        entry.target
-                    );
-
-                }
+                });
 
             });
 
-        },
 
-        {
-            threshold: .12
-        }
-
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
-
-        observer.observe(element);
-
-    });
-
-
-/* =========================================================
-   NAVBAR SHADOW ON SCROLL
-========================================================= */
-
-window.addEventListener(
-    "scroll",
-    () => {
+        /* =====================================================
+           NAVBAR SCROLL
+        ====================================================== */
 
         const navbar =
-            document.querySelector(".navbar");
+            document.getElementById("navbar");
 
-        if (window.scrollY > 20) {
+        window.addEventListener(
+            "scroll",
+            () => {
 
-            navbar.style.boxShadow =
-                "0 10px 35px rgba(15,23,42,.06)";
+                navbar.classList.toggle(
+                    "scrolled",
+                    window.scrollY > 30
+                );
 
-        } else {
+            },
+            { passive: true }
+        );
 
-            navbar.style.boxShadow = "none";
+
+        /* =====================================================
+           ACTIVE NAVIGATION
+        ====================================================== */
+
+        const sections =
+            document.querySelectorAll("section[id]");
+
+        const navItems =
+            document.querySelectorAll(".nav-links a");
+
+        const observerNav =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            navItems.forEach(item => {
+                                item.classList.remove("active");
+                            });
+
+                            const active =
+                                document.querySelector(
+                                    `.nav-links a[href="#${entry.target.id}"]`
+                                );
+
+                            if (active) {
+                                active.classList.add("active");
+                            }
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.25
+                }
+            );
+
+        sections.forEach(section => {
+            observerNav.observe(section);
+        });
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ====================================================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("visible");
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+
+        /* =====================================================
+           SKILL BARS
+        ====================================================== */
+
+        const skillFills =
+            document.querySelectorAll(".skill-fill");
+
+        const skillsObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            const fill =
+                                entry.target;
+
+                            fill.style.width =
+                                fill.dataset.width;
+
+                            skillsObserver.unobserve(
+                                fill
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.5
+                }
+            );
+
+        skillFills.forEach(fill => {
+            skillsObserver.observe(fill);
+        });
+
+
+        /* =====================================================
+           PARTICLES
+        ====================================================== */
+
+        const particles =
+            document.getElementById("particles");
+
+        for (let i = 0; i < 45; i++) {
+
+            const particle =
+                document.createElement("div");
+
+            particle.className = "particle";
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+            particle.style.animationDuration =
+                (8 + Math.random() * 15) + "s";
+
+            particle.style.animationDelay =
+                (-Math.random() * 15) + "s";
+
+            particle.style.opacity =
+                (0.08 + Math.random() * 0.28);
+
+            particles.appendChild(particle);
 
         }
 
-    }
-);
 
-</script>
+        /* =====================================================
+           MOUSE GLOW
+        ====================================================== */
+
+        const mouseGlow =
+            document.getElementById("mouseGlow");
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+
+        let glowX = mouseX;
+        let glowY = mouseY;
+
+        window.addEventListener(
+            "mousemove",
+            event => {
+
+                mouseX = event.clientX;
+                mouseY = event.clientY;
+
+            },
+            { passive: true }
+        );
+
+        function animateGlow() {
+
+            glowX += (mouseX - glowX) * 0.08;
+            glowY += (mouseY - glowY) * 0.08;
+
+            mouseGlow.style.left =
+                glowX + "px";
+
+            mouseGlow.style.top =
+                glowY + "px";
+
+            requestAnimationFrame(
+                animateGlow
+            );
+
+        }
+
+        animateGlow();
 
 
-</body></html>
+        /* =====================================================
+           CUSTOM CURSOR
+        ====================================================== */
+
+        const cursorDot =
+            document.getElementById("cursorDot");
+
+        const cursorRing =
+            document.getElementById("cursorRing");
+
+        let cursorX = 0;
+        let cursorY = 0;
+
+        let ringX = 0;
+        let ringY = 0;
+
+        window.addEventListener(
+            "mousemove",
+            event => {
+
+                cursorX = event.clientX;
+                cursorY = event.clientY;
+
+                cursorDot.style.left =
+                    cursorX + "px";
+
+                cursorDot.style.top =
+                    cursorY + "px";
+
+            },
+            { passive: true }
+        );
+
+        function animateCursor() {
+
+            ringX += (cursorX - ringX) * 0.15;
+            ringY += (cursorY - ringY) * 0.15;
+
+            cursorRing.style.left =
+                ringX + "px";
+
+            cursorRing.style.top =
+                ringY + "px";
+
+            requestAnimationFrame(
+                animateCursor
+            );
+
+        }
+
+        animateCursor();
+
+
+        document.querySelectorAll(
+            "a, button, input, textarea, .project-clickable"
+        ).forEach(element => {
+
+            element.addEventListener(
+                "mouseenter",
+                () => {
+                    document.body.classList.add(
+                        "cursor-hover"
+                    );
+                }
+            );
+
+            element.addEventListener(
+                "mouseleave",
+                () => {
+                    document.body.classList.remove(
+                        "cursor-hover"
+                    );
+                }
+            );
+
+        });
+
+
+        /* =====================================================
+           HERO 3D TILT
+        ====================================================== */
+
+        const visualShell =
+            document.getElementById("visualShell");
+
+        if (
+            window.matchMedia(
+                "(pointer:fine)"
+            ).matches
+        ) {
+
+            visualShell.addEventListener(
+                "mousemove",
+                event => {
+
+                    const rect =
+                        visualShell.getBoundingClientRect();
+
+                    const x =
+                        event.clientX -
+                        rect.left -
+                        rect.width / 2;
+
+                    const y =
+                        event.clientY -
+                        rect.top -
+                        rect.height / 2;
+
+                    const rotateX =
+                        -(y / rect.height) * 8;
+
+                    const rotateY =
+                        (x / rect.width) * 8;
+
+                    visualShell.style.transform =
+                        `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+                }
+            );
+
+            visualShell.addEventListener(
+                "mouseleave",
+                () => {
+
+                    visualShell.style.transform =
+                        "rotateX(0deg) rotateY(0deg)";
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           MAGNETIC BUTTONS
+        ====================================================== */
+
+        document.querySelectorAll(
+            ".magnetic"
+        ).forEach(button => {
+
+            button.addEventListener(
+                "mousemove",
+                event => {
+
+                    const rect =
+                        button.getBoundingClientRect();
+
+                    const x =
+                        event.clientX -
+                        rect.left -
+                        rect.width / 2;
+
+                    const y =
+                        event.clientY -
+                        rect.top -
+                        rect.height / 2;
+
+                    button.style.transform =
+                        `translate(${x * 0.12}px, ${y * 0.12}px)`;
+
+                }
+            );
+
+            button.addEventListener(
+                "mouseleave",
+                () => {
+
+                    button.style.transform =
+                        "";
+
+                }
+            );
+
+        });
+
+
+        /* =====================================================
+           CARD TILT
+        ====================================================== */
+
+        document.querySelectorAll(
+            ".expertise-card, .project-card"
+        ).forEach(card => {
+
+            card.addEventListener(
+                "mousemove",
+                event => {
+
+                    if (
+                        window.innerWidth < 900
+                    ) return;
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+                    const x =
+                        event.clientX -
+                        rect.left;
+
+                    const y =
+                        event.clientY -
+                        rect.top;
+
+                    const rotateY =
+                        ((x / rect.width) - 0.5) * 5;
+
+                    const rotateX =
+                        -((y / rect.height) - 0.5) * 5;
+
+                    card.style.transform =
+                        `perspective(900px)
+                         rotateX(${rotateX}deg)
+                         rotateY(${rotateY}deg)
+                         translateY(-8px)`;
+
+                }
+            );
+
+            card.addEventListener(
+                "mouseleave",
+                () => {
+
+                    card.style.transform = "";
+
+                }
+            );
+
+        });
+
+
+        /* =====================================================
+           PROJECT LIGHTBOX
+        ====================================================== */
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightboxImage");
+
+        const lightboxClose =
+            document.getElementById("lightboxClose");
+
+
+        document.querySelectorAll(
+            ".project-clickable"
+        ).forEach(project => {
+
+            project.addEventListener(
+                "click",
+                () => {
+
+                    const image =
+                        project.dataset.image;
+
+                    const img =
+                        project.querySelector("img");
+
+                    if (
+                        img &&
+                        img.src &&
+                        img.style.display !== "none"
+                    ) {
+
+                        lightboxImage.src =
+                            image;
+
+                        lightbox.classList.add(
+                            "active"
+                        );
+
+                        document.body.style.overflow =
+                            "hidden";
+
+                    }
+
+                }
+            );
+
+        });
+
+
+        function closeLightbox() {
+
+            lightbox.classList.remove(
+                "active"
+            );
+
+            document.body.style.overflow =
+                "";
+
+            lightboxImage.src = "";
+
+        }
+
+
+        lightboxClose.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+
+        lightbox.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === lightbox
+                ) {
+                    closeLightbox();
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape" &&
+                    lightbox.classList.contains("active")
+                ) {
+                    closeLightbox();
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           CONTACT FORM
+        ====================================================== */
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+        contactForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+                const name =
+                    contactForm.elements.name.value;
+
+                const email =
+                    contactForm.elements.email.value;
+
+                const subject =
+                    contactForm.elements.subject.value;
+
+                const message =
+                    contactForm.elements.message.value;
+
+
+                const targetEmail =
+                    "your-email@gmail.com";
+
+
+                const mailto =
+                    `mailto:${targetEmail}` +
+                    `?subject=${encodeURIComponent(subject)}` +
+                    `&body=${encodeURIComponent(
+                        "Name: " +
+                        name +
+                        "\nEmail: " +
+                        email +
+                        "\n\n" +
+                        message
+                    )}`;
+
+
+                window.location.href =
+                    mailto;
+
+            }
+        );
+
+
+        /* =====================================================
+           LANGUAGE BUTTON
+        ====================================================== */
+
+        const languageBtn =
+            document.getElementById("languageBtn");
+
+        let arabicMode = false;
+
+        languageBtn.addEventListener(
+            "click",
+            () => {
+
+                arabicMode = !arabicMode;
+
+                if (arabicMode) {
+
+                    document.documentElement.lang =
+                        "ar";
+
+                    document.documentElement.dir =
+                        "rtl";
+
+                    languageBtn.textContent =
+                        "EN";
+
+                    document.title =
+                        "عبدالرحمن السهلي | أخصائي شبكات";
+
+                    translateToArabic();
+
+                } else {
+
+                    document.documentElement.lang =
+                        "en";
+
+                    document.documentElement.dir =
+                        "ltr";
+
+                    languageBtn.textContent =
+                        "AR";
+
+                    document.title =
+                        "Abdulrahman Alsahli | Network Specialist";
+
+                    location.reload();
+
+                }
+
+            }
+        );
+
+
+        function translateToArabic() {
+
+            const translations = {
+
+                "Home":
+                    "الرئيسية",
+
+                "About":
+                    "عني",
+
+                "Expertise":
+                    "الخبرات",
+
+                "Skills":
+                    "المهارات",
+
+                "Projects":
+                    "المشاريع",
+
+                "Contact":
+                    "تواصل",
+
+                "Network Specialist":
+                    "أخصائي شبكات",
+
+                "Building":
+                    "أبني",
+
+                "Reliable Networks.":
+                    "شبكات موثوقة.",
+
+                "View Projects":
+                    "عرض المشاريع",
+
+                "Contact Me":
+                    "تواصل معي",
+
+                "About Me":
+                    "نبذة عني",
+
+                "Expertise":
+                    "الخبرات",
+
+                "Technical Skills":
+                    "المهارات التقنية",
+
+                "Selected Projects":
+                    "أبرز المشاريع",
+
+                "Contact":
+                    "تواصل معي"
+
+            };
+
+
+            document
+                .querySelectorAll(
+                    "a, button, h1, h2, h3, h4, p, span, small, strong, label"
+                )
+                .forEach(element => {
+
+                    const text =
+                        element.textContent.trim();
+
+                    if (
+                        translations[text]
+                    ) {
+                        element.textContent =
+                            translations[text];
+                    }
+
+                });
+
+        }
+
+
+        /* =====================================================
+           PAGE LOAD
+        ====================================================== */
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                document.body.classList.add(
+                    "loaded"
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
